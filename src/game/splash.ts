@@ -6,6 +6,7 @@ import { MusicComponent } from "../jetlag/Components/Music";
 import { chooserBuilder } from "./chooser";
 import { helpBuilder } from "./help";
 import { drawMuteButton } from "./common";
+import { gameBuilder } from "./play";
 
 /**
  * splashBuilder will draw the scene that we see when the game starts. In our
@@ -22,7 +23,35 @@ export function splashBuilder(_level: number) {
             stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("tune2.ogg"));
         stage.gameMusic.play();
     */
+    // Draw a brown box at the top of the screen, put some text in it
+    new Actor({
+        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 50, color: "#000000" }, "Ghosted: The Game"),
+        rigidBody: new BoxBody({ cx: 0, cy: 0, width: .1, height: .1 }),
+    });
+    new Actor({
+        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "(working title)"),
+        rigidBody: new BoxBody({ cx: 0, cy: 1, width: .1, height: .1 }),
+    });
+    new Actor({
+        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "(title screen WIP)"),
+        rigidBody: new BoxBody({ cx: 0, cy: 2, width: .1, height: .1 }),
+    });
 
+    // Draw some text.  Tapping its *rigidBody* will go to the first page of the
+    // level chooser
+    new Actor({
+        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "Play"),
+        rigidBody: new BoxBody({ cx: 0, cy: 3, width: 1, height: 0.5 }),
+        gestures: { tap: () => { stage.switchTo(gameBuilder, 1); return true; } }
+    });
+
+    // Draw some text.  Tapping its *rigidBody* will go to the first page of the
+    // level chooser
+    new Actor({
+        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "Level Select"),
+        rigidBody: new BoxBody({ cx: 0, cy: 4, width: 1, height: 0.5 }),
+        gestures: { tap: () => { stage.switchTo(chooserBuilder, 1); return true; } }
+    });
 
     // And a mute button...
     drawMuteButton({ cx: 15, cy: 8, width: .75, height: .75, scene: stage.world });
