@@ -63,8 +63,8 @@ export function gameBuilder(level: number) {
         //Wall
         new Actor({
             appearance: new FilledBox({ width: 4, height: 2, fillColor: "#00ff00" }),
-            rigidBody: new BoxBody({ cx: 4, cy: 4, width: 8, height: 2 }),
-            role: new Hero(),
+            rigidBody: new BoxBody({ cx: 4, cy: 4, width: 8, height: 2 }, { kinematic: false, dynamic: false }),
+            role: new Obstacle(),
         });
 
 
@@ -74,7 +74,7 @@ export function gameBuilder(level: number) {
             appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "playerCharacter.png" }),
             rigidBody: new CircleBody({ cx: 2, cy: 3, radius: 0.4 }),
             movement: new ManualMovement(),
-            role: new Obstacle(),
+            role: new Hero(),
         });
 
         stage.keyboard.setKeyUpHandler(KeyCodes.KEY_UP, () => (player.movement as ManualMovement).updateYVelocity(0));
