@@ -10,6 +10,7 @@ import { splashBuilder } from "./splash";
 import { chooserBuilder } from "./chooser";
 import { b2Vec2 } from "@box2d/core";
 import { drawMuteButton } from "./common";
+import { AdvancedCollisionSystem } from "../jetlag/Systems/Collisions";
 
 /**
  * gameBuilder is for drawing the playable levels of the game
@@ -87,12 +88,28 @@ export function gameBuilder(level: number) {
         stage.keyboard.setKeyDownHandler(KeyCodes.KEY_RIGHT, () => (player.movement as ManualMovement).updateXVelocity(5));
 
         //box to push
-        new Actor({
+        let box = new Actor({
             appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "pushBox.png" }),
-            rigidBody: new BoxBody({ cx: 15, cy: 8, width: 1, height: 1 }, { dynamic: true }),
-            role: new Obstacle(),
+            rigidBody: new BoxBody({ cx: 15, cy: 8, width: 0.8, height: 0.8 }, { passThroughId: [7], dynamic: true }),
+            role: new Hero(),
         });
 
+
+
+        let collisions = 0;
+        let messages = ["win"]
+        //target block
+        let target = new Actor({
+            appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "target.png" }),
+            rigidBody: new BoxBody({ cx: 14, cy: 3, width: 0.8, height: 0.8 }, { passThroughId: [7] }),
+            role: new Obstacle({
+                heroCollision: () => {
+                    (stage.world.physics as AdvancedCollisionSystem).addEndContactHandler(target, box, () => {
+                        console.log("box hits target")
+                    });
+                }
+            }),
+        });
 
 
 
