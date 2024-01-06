@@ -17,7 +17,7 @@ export function createPlayer(x: number, y: number, passThroughId: Array<number>)
     //player character
     let player = new Actor({
         appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "playerCharacter.png" }),
-        rigidBody: new CircleBody({ cx: 2, cy: 3, radius: 0.4 }, { passThroughId: passThroughId }),
+        rigidBody: new CircleBody({ cx: x, cy: y, radius: 0.4 }, { passThroughId: passThroughId }),
         movement: new ManualMovement(),
         role: new Hero(),
     });
