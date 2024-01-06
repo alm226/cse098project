@@ -16,21 +16,11 @@ import { MusicComponent } from "../jetlag/Components/Music";
  */
 export function chooserBuilder(level: number) {
     // start the chooser music, pause the game music
-    stage.levelMusic = new MusicComponent(stage.musicLibrary.getMusic("tune.ogg"));
-    stage.gameMusic?.pause();
+    //  stage.levelMusic = new MusicComponent(stage.musicLibrary.getMusic("tune.ogg"));
+    //  stage.gameMusic?.pause();
 
     // Paint the background white
     stage.backgroundColor = "#FFFFFF";
-
-    // Draw a brown box at the top of the screen, put some text in it
-    new Actor({
-        appearance: new FilledBox({ width: 16, height: 2.3, fillColor: "#523216" }),
-        rigidBody: new BoxBody({ cx: 8, cy: 1.15, width: 16, height: 2.3 }, { collisionsEnabled: false }),
-    });
-    new Actor({
-        appearance: new TextSprite({ center: true, face: "Arial", size: 120, color: "#FFFFFF" }, "Choose a Level"),
-        rigidBody: new BoxBody({ cx: 8, cy: 1.15, width: .1, height: .1 }),
-    });
 
     // Draw some buttons, based on which chooser "level" we're on
     if (level == 1) {
