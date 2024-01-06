@@ -1,19 +1,15 @@
-import { PathMovement, TiltMovement, Path, ManualMovement } from "../jetlag/Components/Movement";
 import { stage } from "../jetlag/Stage";
 import { Scene } from "../jetlag/Entities/Scene";
 import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
 import { BoxBody, CircleBody } from "../jetlag/Components/RigidBody";
-import { Hero, Destination, Enemy, Goodie, Obstacle, Sensor } from "../jetlag/Components/Role";
-import { KeyCodes } from "../jetlag/Services/Keyboard";
-import { splashBuilder } from "./splash";
+import { Hero, Obstacle } from "../jetlag/Components/Role";
 import { chooserBuilder } from "./chooser";
-import { b2Vec2 } from "@box2d/core";
 import { drawMuteButton } from "./common";
-import { AdvancedCollisionSystem } from "../jetlag/Systems/Collisions";
 import { createPlayer } from "./playerCharacter"
 import { createPushBox } from "./pushBox"
-import { createLockedWall, unlock } from "./lockedWall";
+import { createLockedWall } from "./lockedWall";
+import { createTarget } from "./target";
 
 
 /**
@@ -26,8 +22,35 @@ import { createLockedWall, unlock } from "./lockedWall";
  */
 export function gameBuilder(level: number) {
 
+    createBoundary();
+
+    if (level == 1) {
+
+        //Wall
+        new Actor({
+            appearance: new FilledBox({ width: 4, height: 2, fillColor: "#00ff00" }),
+            rigidBody: new BoxBody({ cx: 4, cy: 4, width: 8, height: 2 }, { kinematic: false, dynamic: false }),
+            role: new Obstacle(),
+        });
 
 
+        //create a player character at the coordinates (2,3) on pass through layer 8
+        let player = createPlayer(2, 3, [8]);
+
+
+        //create a pushBox at the coordinates (15,7) on pass through layer 7
+        let box = createPushBox(15, 7, [7]);
+
+        let lockedWall = createLockedWall(5, 7);
+
+        let target = createTarget(14, 3, [7], box, lockedWall);
+
+        welcomeMessage("Use tilt (or arrows) to reach the destination");
+    }
+
+}
+
+function createBoundary() {
     // Every level will have some common configuration stuff.  We'll put it all
     // here, at the top.  Some of it relies on functions that are at the end of
     // this file.
@@ -52,86 +75,8 @@ export function gameBuilder(level: number) {
         rigidBody: new BoxBody({ cx: 16.05, cy: 4.5, width: .1, height: 9 }),
         role: new Obstacle(),
     });
-
-    // Pressing a key will induce a force, releasing will stop inducing that force
-    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_UP, () => (stage.accelerometer.accel.y = 0));
-    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_DOWN, () => (stage.accelerometer.accel.y = 0));
-    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_LEFT, () => (stage.accelerometer.accel.x = 0));
-    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_RIGHT, () => (stage.accelerometer.accel.x = 0));
-    stage.keyboard.setKeyDownHandler(KeyCodes.KEY_UP, () => (stage.accelerometer.accel.y = -5));
-    stage.keyboard.setKeyDownHandler(KeyCodes.KEY_DOWN, () => (stage.accelerometer.accel.y = 5));
-    stage.keyboard.setKeyDownHandler(KeyCodes.KEY_LEFT, () => (stage.accelerometer.accel.x = -5));
-    stage.keyboard.setKeyDownHandler(KeyCodes.KEY_RIGHT, () => (stage.accelerometer.accel.x = 5));
-
-    if (level == 1) {
-
-        //Wall
-        new Actor({
-            appearance: new FilledBox({ width: 4, height: 2, fillColor: "#00ff00" }),
-            rigidBody: new BoxBody({ cx: 4, cy: 4, width: 8, height: 2 }, { kinematic: false, dynamic: false }),
-            role: new Obstacle(),
-        });
-
-
-        //create a player character at the coordinates (2,3) on pass through layer 8
-        let player = createPlayer(2, 3, [8]);
-
-
-        //create a pushBox at the coordinates (15,7) on pass through layer 7
-        let box = createPushBox(15, 7, [7]);
-
-        let lockedWall = createLockedWall(5, 7);
-
-
-
-
-
-        let collisions = 0;
-        let messages = ["win"]
-        //target block
-        let target = new Actor({
-            appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "target.png" }),
-            rigidBody: new BoxBody({ cx: 14, cy: 3, width: 0.8, height: 0.8 }, { passThroughId: [7] }),
-            role: new Obstacle({
-                heroCollision: () => {
-                    (stage.world.physics as AdvancedCollisionSystem).addEndContactHandler(target, box, () => {
-                        target.enabled = false;
-                        box.enabled = false;
-                        console.log("box hits target")
-                        unlock(lockedWall, [8]);
-                    });
-                }
-            }),
-        });
-
-
-
-        //screen borders
-        new Actor({
-            appearance: new FilledBox({ width: 16, height: .1, fillColor: "#ff0000" }),
-            rigidBody: new BoxBody({ cx: 8, cy: -.05, width: 16, height: .1 }),
-            role: new Obstacle(),
-        });
-        new Actor({
-            appearance: new FilledBox({ width: 16, height: .1, fillColor: "#ff0000" }),
-            rigidBody: new BoxBody({ cx: 8, cy: 9.05, width: 16, height: .1 }),
-            role: new Obstacle(),
-        });
-        new Actor({
-            appearance: new FilledBox({ width: .1, height: 9, fillColor: "#ff0000" }),
-            rigidBody: new BoxBody({ cx: -.05, cy: 4.5, width: .1, height: 9 }),
-            role: new Obstacle(),
-        });
-        new Actor({
-            appearance: new FilledBox({ width: .1, height: 9, fillColor: "#ff0000" }),
-            rigidBody: new BoxBody({ cx: 16.05, cy: 4.5, width: .1, height: 9 }),
-            role: new Obstacle(),
-        });
-
-        welcomeMessage("Use tilt (or arrows) to reach the destination");
-    }
-
 }
+
 /**
  * Create an overlay (blocking all game progress) consisting of a black screen
  * with text.  Clearing the overlay will resume the current level.  This will

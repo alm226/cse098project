@@ -6,7 +6,9 @@ import { Actor } from "../jetlag/Entities/Actor";
 import { KeyCodes } from "../jetlag/Services/Keyboard";
 import { stage } from "../jetlag/Stage";
 /***
- * Function that creates a player characte
+ * Function that creates a player character
+ * Uses manual movement
+ * Is a hero role (subject to change)
  * @param x the player's initial X coordinate
  * @param y the player's initial Y coordinate
  * @param passThroughId the player's passThroughId
