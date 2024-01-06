@@ -27,6 +27,8 @@ export function gameBuilder(level: number) {
     if (level == 1) {
 
         //Wall
+        //idealy there should be more of them
+        //in some sort of puzzle formation
         new Actor({
             appearance: new FilledBox({ width: 4, height: 2, fillColor: "#00ff00" }),
             rigidBody: new BoxBody({ cx: 4, cy: 4, width: 8, height: 2 }, { kinematic: false, dynamic: false }),
@@ -41,8 +43,10 @@ export function gameBuilder(level: number) {
         //create a pushBox at the coordinates (15,7) on pass through layer 7
         let box = createPushBox(15, 7, [7]);
 
+        //create a locked wall at the coorinates (5,7)
         let lockedWall = createLockedWall(5, 7);
 
+        //create a target at coordinates (14,3) which is receptive to box and unlocks lockedWall
         let target = createTarget(14, 3, [7], box, lockedWall);
 
         welcomeMessage("Use tilt (or arrows) to reach the destination");
