@@ -17,7 +17,7 @@ class Config implements JetLagGameConfig {
   resourcePrefix = "./assets/";
   musicNames = [];
   soundNames = [];
-  imageNames = ["audio_off.png", "audio_on.png", "playerCharacter.png", "pushBox.png", "target.png"];
+  imageNames = ["audio_off.png", "audio_on.png", "playerCharacter.png", "pushBox.png", "target.png", "locked.png", "unlocked.png"];
 }
 
 // call the function that kicks off the game

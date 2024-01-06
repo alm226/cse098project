@@ -11,6 +11,10 @@ import { chooserBuilder } from "./chooser";
 import { b2Vec2 } from "@box2d/core";
 import { drawMuteButton } from "./common";
 import { AdvancedCollisionSystem } from "../jetlag/Systems/Collisions";
+import { createPlayer } from "./playerCharacter"
+import { createPushBox } from "./pushBox"
+import { createLockedWall, unlock } from "./lockedWall";
+
 
 /**
  * gameBuilder is for drawing the playable levels of the game
@@ -69,30 +73,16 @@ export function gameBuilder(level: number) {
         });
 
 
+        //create a player character at the coordinates (2,3) on pass through layer 8
+        let player = createPlayer(2, 3, [8]);
 
-        //player character
-        let player = new Actor({
-            appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "playerCharacter.png" }),
-            rigidBody: new CircleBody({ cx: 2, cy: 3, radius: 0.4 }),
-            movement: new ManualMovement(),
-            role: new Hero(),
-        });
 
-        stage.keyboard.setKeyUpHandler(KeyCodes.KEY_UP, () => (player.movement as ManualMovement).updateYVelocity(0));
-        stage.keyboard.setKeyUpHandler(KeyCodes.KEY_DOWN, () => (player.movement as ManualMovement).updateYVelocity(0));
-        stage.keyboard.setKeyUpHandler(KeyCodes.KEY_LEFT, () => (player.movement as ManualMovement).updateXVelocity(0));
-        stage.keyboard.setKeyUpHandler(KeyCodes.KEY_RIGHT, () => (player.movement as ManualMovement).updateXVelocity(0));
-        stage.keyboard.setKeyDownHandler(KeyCodes.KEY_UP, () => (player.movement as ManualMovement).updateYVelocity(-5));
-        stage.keyboard.setKeyDownHandler(KeyCodes.KEY_DOWN, () => (player.movement as ManualMovement).updateYVelocity(5));
-        stage.keyboard.setKeyDownHandler(KeyCodes.KEY_LEFT, () => (player.movement as ManualMovement).updateXVelocity(-5));
-        stage.keyboard.setKeyDownHandler(KeyCodes.KEY_RIGHT, () => (player.movement as ManualMovement).updateXVelocity(5));
+        //create a pushBox at the coordinates (15,7) on pass through layer 7
+        let box = createPushBox(15, 7, [7]);
 
-        //box to push
-        let box = new Actor({
-            appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "pushBox.png" }),
-            rigidBody: new BoxBody({ cx: 15, cy: 8, width: 0.8, height: 0.8 }, { passThroughId: [7], dynamic: true }),
-            role: new Hero(),
-        });
+        let lockedWall = createLockedWall(5, 7);
+
+
 
 
 
@@ -105,7 +95,10 @@ export function gameBuilder(level: number) {
             role: new Obstacle({
                 heroCollision: () => {
                     (stage.world.physics as AdvancedCollisionSystem).addEndContactHandler(target, box, () => {
+                        target.enabled = false;
+                        box.enabled = false;
                         console.log("box hits target")
+                        unlock(lockedWall, [8]);
                     });
                 }
             }),
