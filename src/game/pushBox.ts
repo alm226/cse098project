@@ -14,7 +14,8 @@ export function createPushBox(x: number, y: number, passThroughId: Array<number>
     //box to push
     let box = new Actor({
         appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "pushBox.png" }),
-        rigidBody: new BoxBody({ cx: x, cy: y, width: 0.8, height: 0.8 }, { passThroughId: passThroughId, dynamic: true }),
+        //TODO: do we want to disable rotation?
+        rigidBody: new BoxBody({ cx: x, cy: y, width: 0.8, height: 0.8 }, { passThroughId: passThroughId, dynamic: true, disableRotation: true }),
         role: new Hero(),
     });
 

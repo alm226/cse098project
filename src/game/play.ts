@@ -60,7 +60,7 @@ export function gameBuilder(level: number) {
 
 
         //create a pushBox at the coordinates (15,7) on pass through layer 7
-        let box = createPushBox(3, 4, [7]);
+        let box = createPushBox(3, 1, [7]);
 
         //create a locked wall at the coorinates (5,7)
         let lockedWall = createLockedWall(8.4, 4);
