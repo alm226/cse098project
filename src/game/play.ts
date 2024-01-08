@@ -131,7 +131,7 @@ export function gameBuilder(level: number) {
         })
 
 
-        welcomeMessage("Use tilt (or arrows) to reach the destination");
+        welcomeMessage("test level\nwip");
     }
 
     //note to future level makers
