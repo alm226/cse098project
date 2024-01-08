@@ -12,12 +12,12 @@ class Config implements JetLagGameConfig {
   adaptToScreenSize = true;
   canVibrate = true;
   forceAccelerometerOff = true;
-  storageKey = "--no-key--";
+  storageKey = "com.github.alm226.cse098project";
   hitBoxes = true;
   resourcePrefix = "./assets/";
   musicNames = [];
   soundNames = [];
-  imageNames = ["pcPortrait.png", "npcPortrait.png", "collect.png", "back_arrow.png", "right_arrow.png", "left_arrow.png", "level_tile.png", "audio_off.png", "audio_on.png", "playerCharacter.png", "pushBox.png", "target.png", "locked.png", "unlocked.png"];
+  imageNames = ["endLevel.png", "pcPortrait.png", "npcPortrait.png", "collect.png", "back_arrow.png", "right_arrow.png", "left_arrow.png", "level_tile.png", "audio_off.png", "audio_on.png", "playerCharacter.png", "pushBox.png", "target.png", "locked.png", "unlocked.png"];
 }
 
 // call the function that kicks off the game

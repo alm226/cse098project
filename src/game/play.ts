@@ -11,21 +11,30 @@ import { createPushBox } from "./pushBox"
 import { createLockedWall } from "./lockedWall";
 import { createTarget } from "./target";
 import { textbox } from "./textbox";
+import { splashBuilder } from "./splash";
 
 
 /**
  * gameBuilder is for drawing the playable levels of the game
- *
- * We currently have 9 levels, which is just enough to let the chooser be
- * interesting.
- *
  * @param level Which level should be displayed
  */
 export function gameBuilder(level: number) {
 
     createBoundary();
 
+    // Make sure we go to the correct level when this level is won/lost: for
+    // anything but the last level, we go to the next level.  Otherwise, go to the splash screen
+    if (level != 2) {
+        stage.score.onLose = { level: level, builder: gameBuilder };
+        stage.score.onWin = { level: level + 1, builder: gameBuilder };
+    }
+    else {
+        stage.score.onLose = { level: level, builder: gameBuilder };
+        stage.score.onWin = { level: 1, builder: splashBuilder };
+    }
+
     if (level == 1) {
+        stage.score.setVictoryGoodies(2, 0, 0, 0)
 
         //Wall
         //idealy there should be more of them
@@ -59,18 +68,28 @@ export function gameBuilder(level: number) {
         //create a target at coordinates (14,3) which is receptive to box and unlocks lockedWall
         let target = createTarget(14, 3, [7], box, lockedWall);
 
+        //create a general purpose collectable
+        //potential ideas are a lab co-worker for lore dispensing
+        //or equipment to fix 
+        //or papers to read
+        //the possibilities are endless
         let collect = new Actor({
+            //obviously all the programmer art is temporary
+            //but "collect.png" should be replaced with something specific whenever this code is used
             appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "collect.png" }),
             rigidBody: new BoxBody({ cx: 14, cy: 7, width: 0.8, height: 0.8 }),
             role: new Goodie({
                 onCollect: () => {
+                    stage.score.setGoodieCount(0, 1);
                     //array of messages. 
-                    //we nave "npc" and "pc" for testing purposes
-                    let messages = ["npc: this is a message",
-                        "pc:  this is a response",
-                        "npc: test\ntest",
-                        "pc:  wowee"]
-                    //order of portraits
+                    let messages = [
+                        "this is a message",
+                        "this is a response",
+                        " line one\n\tline two",
+                        "cool"
+                    ]
+                    //order of portraits (i.e. portrait 0 says the first line
+                    //portrait 1 says the second line, etc)
                     let order = [0, 1, 0, 1]
 
                     textbox(messages, ["npcPortrait.png", "pcPortrait.png"], order);
@@ -80,8 +99,48 @@ export function gameBuilder(level: number) {
             })
         })
 
+        //this will be wherever the end level is
+        //potentially stairs? idk
+        let endLevel = new Actor({
+            appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "endLevel.png" }),
+            rigidBody: new BoxBody({ cx: 4, cy: 7, width: 0.8, height: 0.8 }),
+            role: new Goodie({
+                onCollect: () => {
+                    //make the user aware if they missed something
+                    if (stage.score.getGoodieCount(0) == 0) {
+                        //array of messages. 
+                        let messages = [
+                            "Wait!",
+                            "you haven't talked to me yet",
+                            "even though i just look like a box",
+                            ":(",
+                            "sorry"
+                        ]
+                        //order of portraits
+                        let order = [0, 0, 0, 0, 1]
+
+                        textbox(messages, ["npcPortrait.png", "pcPortrait.png"], order);
+                        return false
+                    }
+                    //satisfy the win condition to move on
+                    stage.score.setGoodieCount(0, 2)
+                    return true
+                }
+
+            })
+        })
+
 
         welcomeMessage("Use tilt (or arrows) to reach the destination");
+    }
+
+    //note to future level makers
+    //remember to add
+    //stage.score.setVictoryGoodies(2, 0, 0, 0)
+    //or some other form of winning the level
+
+    if (level == 2) {
+        welcomeMessage("level 2 doesn't exist yet")
     }
 
 }
