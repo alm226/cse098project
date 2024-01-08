@@ -68,7 +68,7 @@ export function gameBuilder(level: number) {
                     //we nave "npc" and "pc" for testing purposes
                     let messages = ["npc: this is a message",
                         "pc:  this is a response",
-                        "npc: different message",
+                        "npc: test\ntest",
                         "pc:  wowee"]
                     //order of portraits
                     let order = [0, 1, 0, 1]

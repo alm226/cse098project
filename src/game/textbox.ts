@@ -1,6 +1,6 @@
 import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { BoxBody } from "../jetlag/Components/RigidBody";
-import { Obstacle } from "../jetlag/Components/Role";
+import { PhysicsCfg } from "../jetlag/Config";
 import { Actor } from "../jetlag/Entities/Actor";
 import { Scene } from "../jetlag/Entities/Scene";
 import { stage } from "../jetlag/Stage";
@@ -17,23 +17,30 @@ export function textbox(text: Array<string>, portraits: Array<string>, order: Ar
         // Draw the screenshot
         new Actor({ appearance: screenshot!, rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }), });
         let messages = 0;
+        let x = 8
+        let y = 6.5
+
 
         let currentText = new Actor({
-            appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 28, z: 0 }, "tes"),
-            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: .1, height: .1 }, { scene: overlay }),
+            appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 28, z: 0 }, text[messages]),
+            rigidBody: new BoxBody({ cx: x, cy: y, width: .1, height: .1 }, { scene: overlay }),
         });
 
+        //the black background
         new Actor({
-            appearance: new FilledBox({ width: 2, height: 1, fillColor: "#000000", z: -1 }),
-            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 2, height: 1 }, { scene: overlay }),
+            appearance: new FilledBox({ width: 4, height: 1, fillColor: "#000000", z: -1 }),
+            rigidBody: new BoxBody({ cx: x, cy: y, width: 4, height: 1 }, { scene: overlay }),
             gestures: {
                 tap: () => {
 
-                    //if (messages != text.length) {
-
-                    //}
-                    stage.clearOverlay(); return true;
-
+                    if (messages != text.length - 1) {
+                        messages++;
+                        currentText = updateText(text[messages], currentText, overlay, x, y)
+                    }
+                    else {
+                        stage.clearOverlay(); return true;
+                    }
+                    return false;
 
 
                 }
@@ -46,7 +53,13 @@ export function textbox(text: Array<string>, portraits: Array<string>, order: Ar
 
 
     }, true);
+}
 
-
-
+function updateText(message: string, textSprite: Actor, scene: PhysicsCfg["scene"], x: number, y: number) {
+    textSprite.enabled = false;
+    let currentText = new Actor({
+        appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 28, z: 0 }, message),
+        rigidBody: new BoxBody({ cx: x, cy: y, width: .1, height: .1 }, { scene: scene }),
+    });
+    return currentText
 }
