@@ -17,6 +17,10 @@ export function createPushBox(x: number, y: number, passThroughId: Array<number>
         //TODO: do we want to disable rotation?
         rigidBody: new BoxBody({ cx: x, cy: y, width: 0.8, height: 0.8 }, { passThroughId: passThroughId, dynamic: true, disableRotation: true }),
         role: new Hero(),
+        //we use the extra field to hold isPushBox
+        //and in target.ts we check to see if its there
+        //so the target knows if a hero is a pushBox or not
+        extra: { isPushBox: true }
     });
 
     return box;

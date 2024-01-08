@@ -36,6 +36,12 @@ export function gameBuilder(level: number) {
     if (level == 1) {
         stage.score.setVictoryGoodies(2, 0, 0, 0)
 
+        //something to consider:
+        //right now the lockable/unlockable wall is the same size as the player
+        //which is not a big issue but it may be a little annoying to manuver through
+        //so it may benefit from slightly shrinking the rigidBodies of the walls
+        //slightly without changing the appearence to give the impression of more tolerance
+
         //Wall
         //idealy there should be more of them
         //in some sort of puzzle formation
@@ -66,7 +72,7 @@ export function gameBuilder(level: number) {
         let lockedWall = createLockedWall(8.4, 4);
 
         //create a target at coordinates (14,3) which is receptive to box and unlocks lockedWall
-        let target = createTarget(14, 3, [7], box, lockedWall);
+        let target = createTarget(14, 3, [7], lockedWall);
 
         //create a general purpose collectable
         //potential ideas are a lab co-worker for lore dispensing
