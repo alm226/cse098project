@@ -26,6 +26,11 @@ export function textbox(text: Array<string>, portraits: Array<string>, order: Ar
             rigidBody: new BoxBody({ cx: x, cy: y, width: .1, height: .1 }, { scene: overlay }),
         });
 
+        let currentPortrait = new Actor({
+            appearance: new ImageSprite({ width: 1, height: 1, img: portraits[order[messages]] }),
+            rigidBody: new BoxBody({ cx: x - 2, cy: y, width: 1, height: 1 }, { scene: overlay }),
+        })
+
         //the black background
         new Actor({
             appearance: new FilledBox({ width: 4, height: 1, fillColor: "#000000", z: -1 }),
@@ -36,6 +41,7 @@ export function textbox(text: Array<string>, portraits: Array<string>, order: Ar
                     if (messages != text.length - 1) {
                         messages++;
                         currentText = updateText(text[messages], currentText, overlay, x, y)
+                        currentPortrait = updatePortrait(portraits[order[messages]], x, y, currentPortrait, overlay)
                     }
                     else {
                         stage.clearOverlay(); return true;
@@ -62,4 +68,13 @@ function updateText(message: string, textSprite: Actor, scene: PhysicsCfg["scene
         rigidBody: new BoxBody({ cx: x, cy: y, width: .1, height: .1 }, { scene: scene }),
     });
     return currentText
+}
+
+function updatePortrait(imgName: string, x: number, y: number, portrait: Actor, scene: PhysicsCfg["scene"]) {
+    portrait.enabled = false;
+    let currentPortrait = new Actor({
+        appearance: new ImageSprite({ width: 1, height: 1, img: imgName }),
+        rigidBody: new BoxBody({ cx: x - 2, cy: y, width: 1, height: 1 }, { scene: scene }),
+    })
+    return currentPortrait;
 }
