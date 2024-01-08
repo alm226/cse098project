@@ -3,13 +3,14 @@ import { Scene } from "../jetlag/Entities/Scene";
 import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
 import { BoxBody, CircleBody } from "../jetlag/Components/RigidBody";
-import { Hero, Obstacle } from "../jetlag/Components/Role";
+import { Goodie, Hero, Obstacle } from "../jetlag/Components/Role";
 import { chooserBuilder } from "./chooser";
 import { drawMuteButton } from "./common";
 import { createPlayer } from "./playerCharacter"
 import { createPushBox } from "./pushBox"
 import { createLockedWall } from "./lockedWall";
 import { createTarget } from "./target";
+import { textbox } from "./textbox";
 
 
 /**
@@ -30,8 +31,17 @@ export function gameBuilder(level: number) {
         //idealy there should be more of them
         //in some sort of puzzle formation
         new Actor({
-            appearance: new FilledBox({ width: 4, height: 2, fillColor: "#00ff00" }),
-            rigidBody: new BoxBody({ cx: 4, cy: 4, width: 8, height: 2 }, { kinematic: false, dynamic: false }),
+            appearance: new FilledBox({ width: 8, height: 0.8, fillColor: "#00ff00" }),
+            rigidBody: new BoxBody({ cx: 4, cy: 4, width: 8, height: 0.8 }, { kinematic: false, dynamic: false }),
+            role: new Obstacle(),
+        });
+
+        //Wall
+        //idealy there should be more of them
+        //in some sort of puzzle formation
+        new Actor({
+            appearance: new FilledBox({ width: 8, height: 0.8, fillColor: "#ff0000" }),
+            rigidBody: new BoxBody({ cx: 12.8, cy: 4, width: 8, height: 0.8 }, { kinematic: false, dynamic: false }),
             role: new Obstacle(),
         });
 
@@ -41,13 +51,35 @@ export function gameBuilder(level: number) {
 
 
         //create a pushBox at the coordinates (15,7) on pass through layer 7
-        let box = createPushBox(15, 7, [7]);
+        let box = createPushBox(3, 4, [7]);
 
         //create a locked wall at the coorinates (5,7)
-        let lockedWall = createLockedWall(5, 7);
+        let lockedWall = createLockedWall(8.4, 4);
 
         //create a target at coordinates (14,3) which is receptive to box and unlocks lockedWall
         let target = createTarget(14, 3, [7], box, lockedWall);
+
+        let collect = new Actor({
+            appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "collect.png" }),
+            rigidBody: new BoxBody({ cx: 14, cy: 7, width: 0.8, height: 0.8 }),
+            role: new Goodie({
+                onCollect: () => {
+                    //array of messages. 
+                    //we nave "npc" and "pc" for testing purposes
+                    let messages = ["npc: this is a message",
+                        "pc:  this is a response",
+                        "npc: different message",
+                        "pc:  wowee"]
+                    //order of portraits
+                    let order = [0, 1, 0, 1]
+
+                    textbox(messages, ["npcPortrait.png", "pcPortrait.png"], order);
+                    return true
+                }
+
+            })
+        })
+
 
         welcomeMessage("Use tilt (or arrows) to reach the destination");
     }
