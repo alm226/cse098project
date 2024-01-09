@@ -8,7 +8,11 @@ import { createRestartButton } from "./common";
 import { splashBuilder } from "./splash";
 import { KeyCodes } from "../jetlag/Services/Keyboard";
 import { pauseGame } from "./pause";
-import { levelOne } from "./levelOne";
+import { levelOne } from "./levels.ts/levelOne";
+import { levelTwo } from "./levels.ts/levelTwo";
+import { levelThree } from "./levels.ts/levelThree";
+import { levelFour } from "./levels.ts/levelFour";
+import { levelFive } from "./levels.ts/levelFive";
 
 
 /**
@@ -23,7 +27,7 @@ export function gameBuilder(level: number) {
 
     // Make sure we go to the correct level when this level is won/lost: for
     // anything but the last level, we go to the next level.  Otherwise, go to the splash screen
-    if (level != 2) {
+    if (level != 5) {
         stage.score.onLose = { level: level, builder: gameBuilder };
         stage.score.onWin = { level: level + 1, builder: gameBuilder };
     }
@@ -42,7 +46,16 @@ export function gameBuilder(level: number) {
     //or some other form of winning the level
 
     if (level == 2) {
-        welcomeMessage("level 2 doesn't exist yet")
+        levelTwo(stage)
+    }
+    if (level == 3) {
+        levelThree(stage)
+    }
+    if (level == 4) {
+        levelFour(stage)
+    }
+    if (level == 5) {
+        levelFive(stage)
     }
 
 }

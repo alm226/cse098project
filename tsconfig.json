@@ -22,5 +22,6 @@
   ],
   "include": [
     "src/game/*",
+    "src/game/levels.ts/levelOne.ts",
   ]
 }

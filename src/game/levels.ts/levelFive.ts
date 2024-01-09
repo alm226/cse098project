@@ -1,16 +1,16 @@
-import { FilledBox, ImageSprite } from "../jetlag/Components/Appearance";
-import { BoxBody } from "../jetlag/Components/RigidBody";
-import { Obstacle, Goodie } from "../jetlag/Components/Role";
-import { Actor } from "../jetlag/Entities/Actor";
-import { Stage } from "../jetlag/Stage";
-import { createLockedWall } from "./lockedWall";
-import { welcomeMessage } from "./play";
-import { createPlayer } from "./playerCharacter";
-import { createPushBox } from "./pushBox";
-import { createTarget } from "./target";
-import { textbox } from "./textbox";
+import { FilledBox, ImageSprite } from "../../jetlag/Components/Appearance";
+import { BoxBody } from "../../jetlag/Components/RigidBody";
+import { Obstacle, Goodie } from "../../jetlag/Components/Role";
+import { Actor } from "../../jetlag/Entities/Actor";
+import { Stage } from "../../jetlag/Stage";
+import { createLockedWall } from "../lockedWall";
+import { welcomeMessage } from "../play";
+import { createPlayer } from "../playerCharacter";
+import { createPushBox } from "../pushBox";
+import { createTarget } from "../target";
+import { textbox } from "../textbox";
 
-export function levelOne(stage: Stage) {
+export function levelFive(stage: Stage) {
     stage.score.setVictoryGoodies(2, 0, 0, 0)
 
     //something to consider:
