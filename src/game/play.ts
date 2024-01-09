@@ -23,7 +23,7 @@ import { pauseGame } from "./pause";
 export function gameBuilder(level: number) {
     stage.keyboard.setKeyUpHandler(KeyCodes.KEY_ESCAPE, () => (pauseGame(level)));
 
-    createRestartButton({ scene: stage.world, x: 15, y: 1.5, width: 1, height: 1 });
+    createRestartButton({ scene: stage.hud, x: 15, y: 1.5, width: 1, height: 1 });
     createBoundary();
 
     // Make sure we go to the correct level when this level is won/lost: for
