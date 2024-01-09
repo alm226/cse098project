@@ -40,6 +40,16 @@ export function drawMuteButton(cfg: { cx: number, cy: number, width: number, hei
     };
 }
 
+/***
+ * Draw a restart button
+ * 
+ * @param cfg         Configuration for how to draw the button
+ * @param cfg.scene   The scene where the button should be drawn
+ * @param cfg.x      The center X coordinate of the button
+ * @param cfg.y      The center Y coordinate of the button
+ * @param cfg.width   The width of the button
+ * @param cfg.height  The height of the button
+ */
 export function createRestartButton(cfg: { scene: Scene, x: number, y: number, width: number, height: number }) {
     new Actor({
         appearance: new ImageSprite({ width: .8, height: .8, img: "restart.png" }),
