@@ -18,7 +18,17 @@ export function createLockedWall(x: number, y: number) {
 
     return lockedWall;
 }
-
+export function createWallKey(wall: Actor) {
+    let key = new Actor({
+        appearence = new ImageSprite({ width: 0.8, height: 0.8, img: "blue_ball.png" }).
+        rigidBody: new CircleBody({ cx: 2, cy: 1, radius: 0.4 }),
+      role: new Goodie({
+        // This just updates the four scores
+        onCollect: () => {
+          Actor.enabled = false;
+          return true;
+        }
+      }),
 /***
  * Function to unlock a locked wall
  * This will replace the locked wall with a new actor, the unlocked wall
