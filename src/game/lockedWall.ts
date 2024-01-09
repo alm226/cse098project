@@ -21,7 +21,7 @@ export function createLockedWall(x: number, y: number) {
 
 export function createWallKey(wall: Actor) {
   let key = new Actor({
-    appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "blue_ball.png" }),
+    appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "key.png" }),
     rigidBody: new CircleBody({ cx: 2, cy: 1, radius: 0.4 }),
     role: new Goodie({
       // This just updates the four scores

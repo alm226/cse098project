@@ -12,6 +12,8 @@ import { createLockedWall } from "./lockedWall";
 import { createTarget } from "./target";
 import { textbox } from "./textbox";
 import { splashBuilder } from "./splash";
+import { KeyCodes } from "../jetlag/Services/Keyboard";
+import { pauseGame } from "./pause";
 
 
 /**
@@ -19,7 +21,9 @@ import { splashBuilder } from "./splash";
  * @param level Which level should be displayed
  */
 export function gameBuilder(level: number) {
+    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_ESCAPE, () => (pauseGame(level)));
 
+    createRestartButton(level);
     createBoundary();
 
     // Make sure we go to the correct level when this level is won/lost: for
@@ -151,6 +155,15 @@ export function gameBuilder(level: number) {
 
 }
 
+function createRestartButton(level: number) {
+    new Actor({
+        appearance: new ImageSprite({ width: .8, height: .8, img: "restart.png" }),
+        rigidBody: new BoxBody({ cx: 15, cy: 1, height: 0.8, width: 0.8 }, { scene: stage.hud }),
+        gestures: { tap: () => { stage.score.loseLevel(); return true } }
+    })
+
+}
+
 function createBoundary() {
     // Every level will have some common configuration stuff.  We'll put it all
     // here, at the top.  Some of it relies on functions that are at the end of
@@ -206,123 +219,8 @@ function welcomeMessage(message: string) {
         });
     }, false);
 }
-/**
- * Create an overlay (blocking all game progress) consisting of a text box over
- * a snapshot of the in-progress game.  Clearing the overlay will resume the
- * current level.
- *
- * @param level The current level
- */
-function pauseGame(level: number) {
-    // Immediately install the overlay, to pause the game
-    stage.requestOverlay((overlay: Scene, screenshot: ImageSprite | undefined) => {
-        // Draw the screenshot
-        new Actor({ appearance: screenshot!, rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }), });
 
-        // It's always good to have a way to go back to the chooser:
-        new Actor({
-            appearance: new ImageSprite({ img: "back_arrow.png", width: 1, height: 1 }),
-            rigidBody: new BoxBody({ cx: 15.5, cy: .5, width: 1, height: 1 }, { scene: overlay }),
-            gestures: { tap: () => { stage.clearOverlay(); stage.switchTo(chooserBuilder, Math.ceil(level / 4)); return true; } }
-        });
 
-        // Pressing anywhere on the text box will make the overlay go away
-        new Actor({
-            appearance: new FilledBox({ width: 2, height: 1, fillColor: "#000000" }),
-            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 2, height: 1 }, { scene: overlay }),
-            gestures: { tap: () => { stage.clearOverlay(); return true; } },
-        });
-        new Actor({
-            appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 28, z: 0 }, "Paused"),
-            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: .1, height: .1 }, { scene: overlay }),
-        });
-
-        // It's not a bad idea to have a mute button...
-        drawMuteButton({ scene: overlay, cx: 15.5, cy: 1.5, width: 1, height: 1 });
-    }, true);
-}
-
-/**
- * Create an overlay (blocking all game progress) consisting of a text box over
- * a snapshot of the in-progress game.  Clearing the overlay will resume the
- * current level.  This is different from pauseGame in a few ways (see below).
- *
- * @param level The current level
- */
-function specialPauseGame(level: number, h: Actor) {
-    // Immediately install the overlay, to pause the game
-    stage.requestOverlay((overlay: Scene, screenshot: ImageSprite | undefined) => {
-        // Draw the screenshot
-        new Actor({ appearance: screenshot!, rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }), });
-
-        // It's always good to have a way to go back to the chooser:
-        new Actor({
-            appearance: new ImageSprite({ img: "back_arrow.png", width: 1, height: 1 }),
-            rigidBody: new BoxBody({ cx: 15.5, cy: .5, width: 1, height: 1 }, { scene: overlay }),
-            gestures: { tap: () => { stage.clearOverlay(); stage.switchTo(chooserBuilder, Math.ceil(level / 4)); return true; } }
-        });
-
-        // Pressing anywhere on the text box will make the overlay go away
-        new Actor({
-            appearance: new FilledBox({ width: 2, height: 1, fillColor: "#000000" }),
-            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 2, height: 1 }, { scene: overlay }),
-            gestures: { tap: () => { stage.clearOverlay(); return true; } },
-        });
-        new Actor({
-            appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 28, z: 0 }, "Paused"),
-            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: .1, height: .1 }, { scene: overlay }),
-        });
-
-        // It's not a bad idea to have a mute button...
-        drawMuteButton({ scene: overlay, cx: 15.5, cy: 1.5, width: 1, height: 1 });
-
-        // A "cheat" button for winning right away
-        new Actor({
-            appearance: new ImageSprite({ width: 1, height: 1, img: "green_ball.png" }),
-            rigidBody: new CircleBody({ cx: 8, cy: 5.5, radius: .5 }, { scene: overlay }),
-            gestures: { tap: () => { stage.clearOverlay(); stage.score.winLevel(); return true; } },
-        });
-
-        // A "cheat" button that makes you lose right away
-        new Actor({
-            appearance: new ImageSprite({ width: 1, height: 1, img: "red_ball.png" }),
-            rigidBody: new CircleBody({ cx: 8, cy: 6.5, radius: .5 }, { scene: overlay }),
-            gestures: { tap: () => { stage.clearOverlay(); stage.score.loseLevel(); return true; } },
-        });
-
-        // A mystery button.  It opens *another* pause scene, by hiding this one and
-        // installing a new one.
-        //
-        // One very cool thing is that you can change the *world* from within the
-        // pause scene.  In this case, we'll give the hero strength, so it can
-        // withstand collisions with enemies.
-        new Actor({
-            appearance: new ImageSprite({ width: 1, height: 1, img: "purple_ball.png" }),
-            rigidBody: new CircleBody({ cx: 8, cy: 7.5, radius: .5 }, { scene: overlay }),
-            gestures: {
-                tap: () => {
-                    // clear the pause scene, draw another one
-                    stage.clearOverlay();
-                    stage.requestOverlay((overlay: Scene) => {
-                        // This one just has one button that boosts the hero's strength and returns to the game
-                        new Actor({
-                            appearance: new ImageSprite({ width: 1, height: 1, img: "purple_ball.png" }),
-                            rigidBody: new CircleBody({ cx: 8, cy: 4.5, radius: .5 }, { scene: overlay }),
-                            gestures: {
-                                tap: () => {
-                                    (h.role as Hero).strength = 10;
-                                    stage.clearOverlay();
-                                    return true;
-                                }
-                            }
-                        });
-                    }, false);
-                    return true;
-                }
-            }
-        });
-    }, true);
-}
 
 /**
  * Create an overlay (blocking all game progress) consisting of a black screen
@@ -350,29 +248,4 @@ function winMessage(message: string) {
     };
 }
 
-/**
- * Create an overlay (blocking all game progress) consisting of a black screen
- * with text.  Clearing the overlay will restart the level.
- *
- * @param message A message to display in the middle of the screen
- */
-function loseMessage(message: string) {
-    stage.score.loseSceneBuilder = (overlay: Scene) => {
-        new Actor({
-            appearance: new FilledBox({ width: 16, height: 9, fillColor: "#000000" }),
-            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }),
-            gestures: {
-                tap: () => {
-                    stage.clearOverlay();
-                    stage.switchTo(stage.score.onLose.builder, stage.score.onLose.level);
-                    return true;
-                }
-            },
-        });
-        new Actor({
-            appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 28, z: 0 }, message),
-            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: .1, height: .1 }, { scene: overlay }),
-        })
-    };
-}
 
