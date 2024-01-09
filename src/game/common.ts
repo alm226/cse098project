@@ -39,3 +39,12 @@ export function drawMuteButton(cfg: { cx: number, cy: number, width: number, hei
         }
     };
 }
+
+export function createRestartButton(cfg: { scene: Scene, x: number, y: number, width: number, height: number }) {
+    new Actor({
+        appearance: new ImageSprite({ width: .8, height: .8, img: "restart.png" }),
+        rigidBody: new BoxBody({ cx: cfg.x, cy: cfg.y, height: cfg.height, width: cfg.width }, { scene: cfg.scene }),
+        gestures: { tap: () => { stage.score.loseLevel(); return true } }
+    })
+
+}

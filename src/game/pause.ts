@@ -5,7 +5,7 @@ import { Scene } from "../jetlag/Entities/Scene";
 import { KeyCodes } from "../jetlag/Services/Keyboard";
 import { stage } from "../jetlag/Stage";
 import { chooserBuilder } from "./chooser";
-import { drawMuteButton } from "./common";
+import { createRestartButton, drawMuteButton } from "./common";
 
 /**
  * Create an overlay (blocking all game progress) consisting of a text box over
@@ -40,6 +40,7 @@ export function pauseGame(level: number) {
 
         // It's not a bad idea to have a mute button...
         drawMuteButton({ scene: overlay, cx: 15.5, cy: 1.5, width: 1, height: 1 });
+        createRestartButton({ scene: overlay, x: 15.5, y: 2.5, width: 1, height: 1 });
     }, true);
     stage.keyboard.setKeyUpHandler(KeyCodes.KEY_ESCAPE, () => (stage.clearOverlay()));
 

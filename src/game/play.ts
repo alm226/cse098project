@@ -5,7 +5,7 @@ import { Actor } from "../jetlag/Entities/Actor";
 import { BoxBody, CircleBody } from "../jetlag/Components/RigidBody";
 import { Goodie, Hero, Obstacle } from "../jetlag/Components/Role";
 import { chooserBuilder } from "./chooser";
-import { drawMuteButton } from "./common";
+import { createRestartButton, drawMuteButton } from "./common";
 import { createPlayer } from "./playerCharacter"
 import { createPushBox } from "./pushBox"
 import { createLockedWall } from "./lockedWall";
@@ -23,7 +23,7 @@ import { pauseGame } from "./pause";
 export function gameBuilder(level: number) {
     stage.keyboard.setKeyUpHandler(KeyCodes.KEY_ESCAPE, () => (pauseGame(level)));
 
-    createRestartButton();
+    createRestartButton({ scene: stage.world, x: 15, y: 1.5, width: 1, height: 1 });
     createBoundary();
 
     // Make sure we go to the correct level when this level is won/lost: for
@@ -155,14 +155,7 @@ export function gameBuilder(level: number) {
 
 }
 
-function createRestartButton() {
-    new Actor({
-        appearance: new ImageSprite({ width: .8, height: .8, img: "restart.png" }),
-        rigidBody: new BoxBody({ cx: 15, cy: 1, height: 0.8, width: 0.8 }, { scene: stage.hud }),
-        gestures: { tap: () => { stage.score.loseLevel(); return true } }
-    })
 
-}
 
 function createBoundary() {
     // Every level will have some common configuration stuff.  We'll put it all
