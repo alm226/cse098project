@@ -1,6 +1,6 @@
 import { stage } from "../jetlag/Stage";
 import { Scene } from "../jetlag/Entities/Scene";
-import { FilledBox, TextSprite } from "../jetlag/Components/Appearance";
+import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
 import { BoxBody, CircleBody } from "../jetlag/Components/RigidBody";
 import { Obstacle } from "../jetlag/Components/Role";
@@ -25,6 +25,7 @@ export function gameBuilder(level: number) {
 
     createRestartButton({ scene: stage.hud, x: 15, y: 1.5, width: 1, height: 1 });
     createBoundary();
+    drawBackground();
 
     // Make sure we go to the correct level when this level is won/lost: for
     // anything but the last level, we go to the next level.  Otherwise, go to the splash screen
@@ -65,7 +66,17 @@ export function gameBuilder(level: number) {
 
 }
 
-
+function drawBackground() {
+    let backgroundTiles = ["tile_1.png", "tile_2.png"]
+    for (let x = 0; x <= 16; x += 1) {
+        for (let y = 0; y <= 9; y += 1) {
+            new Actor({
+                appearance: new ImageSprite({ width: 1, height: 1, img: backgroundTiles[((x + (y % 2)) % 2)], z: -1 }),
+                rigidBody: new BoxBody({ cx: x, cy: y, width: 1, height: 1 }, { collisionsEnabled: false }),
+            });
+        }
+    }
+}
 
 function createBoundary() {
     // Every level will have some common configuration stuff.  We'll put it all
