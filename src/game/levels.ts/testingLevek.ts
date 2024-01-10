@@ -24,8 +24,8 @@ export function testingLevel(stage: Stage) {
     //idealy there should be more of them
     //in some sort of puzzle formation
     new Actor({
-        appearance: new FilledBox({ width: 8, height: 0.8, fillColor: "#00ff00" }),
-        rigidBody: new BoxBody({ cx: 4, cy: 4, width: 8, height: 0.8 }, { kinematic: false, dynamic: false }),
+        appearance: new FilledBox({ width: 8, height: 0.8, fillColor: "#00ff0010" }),
+        rigidBody: new BoxBody({ cx: 4, cy: 4, width: 7.6, height: 0.8 }, { kinematic: false, dynamic: false }),
         role: new Obstacle(),
     });
 

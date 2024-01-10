@@ -22,8 +22,8 @@ export function createPlayer(x: number, y: number, passThroughId: Array<number>)
         role: new Hero(),
     });
 
-    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_UP, () => (player.movement as ManualMovement).updateYVelocity(0));
-    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_DOWN, () => (player.movement as ManualMovement).updateYVelocity(0));
+    //stage.keyboard.setKeyUpHandler(KeyCodes.KEY_UP, () => (player.movement as ManualMovement).updateYVelocity(0));
+    //stage.keyboard.setKeyUpHandler(KeyCodes.KEY_DOWN, () => (player.movement as ManualMovement).updateYVelocity(0));
     stage.keyboard.setKeyUpHandler(KeyCodes.KEY_LEFT, () => (player.movement as ManualMovement).updateXVelocity(0));
     stage.keyboard.setKeyUpHandler(KeyCodes.KEY_RIGHT, () => (player.movement as ManualMovement).updateXVelocity(0));
     stage.keyboard.setKeyDownHandler(KeyCodes.KEY_UP, () => (player.movement as ManualMovement).updateYVelocity(-5));
@@ -31,5 +31,15 @@ export function createPlayer(x: number, y: number, passThroughId: Array<number>)
     stage.keyboard.setKeyDownHandler(KeyCodes.KEY_LEFT, () => (player.movement as ManualMovement).updateXVelocity(-5));
     stage.keyboard.setKeyDownHandler(KeyCodes.KEY_RIGHT, () => (player.movement as ManualMovement).updateXVelocity(5));
 
+
+    /*  stage.keyboard.setKeyDownHandler(KeyCodes.KEY_UP, () => (player.rigidBody.setCenter(player.rigidBody.getCenter().x, player.rigidBody.getCenter().y - 1)));
+  
+      if (player.rigidBody.getCenter().x) {
+  
+      }
+  
+  
+      stage.keyboard.setKeyDownHandler(KeyCodes.KEY_DOWN, () => (player.rigidBody.setCenter(player.rigidBody.getCenter().x, player.rigidBody.getCenter().y + 1)));
+  */
     return player;
 }
