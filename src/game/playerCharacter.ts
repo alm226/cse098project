@@ -31,7 +31,28 @@ export function createPlayer(x: number, y: number, passThroughId: Array<number>)
     stage.keyboard.setKeyDownHandler(KeyCodes.KEY_LEFT, () => (player.movement as ManualMovement).updateXVelocity(-5));
     stage.keyboard.setKeyDownHandler(KeyCodes.KEY_RIGHT, () => (player.movement as ManualMovement).updateXVelocity(5));
 
+    let playerX = player.rigidBody.getCenter().x;
+    let playerY = player.rigidBody.getCenter().y;
 
+    console.log("list of actors nearby the player")
+    for (let actor of stage.world.physics!.actorsAt({ x: playerX, y: playerY })) {
+        console.log(actor)
+
+    }
+
+
+
+
+    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_UP, () => { (player.movement as ManualMovement).updateYVelocity(0) })
+
+
+    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_DOWN, () => (player.movement as ManualMovement).updateYVelocity(0));
+    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_LEFT, () => (player.movement as ManualMovement).updateXVelocity(0));
+    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_RIGHT, () => (player.movement as ManualMovement).updateXVelocity(0));
+    stage.keyboard.setKeyDownHandler(KeyCodes.KEY_UP, () => (player.movement as ManualMovement).updateYVelocity(-5));
+    stage.keyboard.setKeyDownHandler(KeyCodes.KEY_DOWN, () => (player.movement as ManualMovement).updateYVelocity(5));
+    stage.keyboard.setKeyDownHandler(KeyCodes.KEY_LEFT, () => (player.movement as ManualMovement).updateXVelocity(-5));
+    stage.keyboard.setKeyDownHandler(KeyCodes.KEY_RIGHT, () => (player.movement as ManualMovement).updateXVelocity(5));
 
 
 
