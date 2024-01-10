@@ -1,4 +1,5 @@
 import { FilledBox, ImageSprite } from "../../jetlag/Components/Appearance";
+import { MusicComponent } from "../../jetlag/Components/Music";
 import { BoxBody } from "../../jetlag/Components/RigidBody";
 import { Obstacle, Goodie } from "../../jetlag/Components/Role";
 import { Actor } from "../../jetlag/Entities/Actor";
@@ -12,6 +13,13 @@ import { createTarget } from "../target";
 import { textbox } from "../textbox";
 
 export function testingLevel(stage: Stage) {
+
+    // start the music
+    if (stage.gameMusic === undefined)
+        stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("Dystopian.wav"));
+    stage.gameMusic.play();
+
+
     stage.score.setVictoryGoodies(2, 0, 0, 0)
 
     //something to consider:

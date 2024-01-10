@@ -15,7 +15,7 @@ class Config implements JetLagGameConfig {
   storageKey = "com.github.alm226.cse098project";
   hitBoxes = true;
   resourcePrefix = "./assets/";
-  musicNames = [];
+  musicNames = ["Dystopian.wav"];
   soundNames = [];
   imageNames = ["tile_1.png", "tile_2.png", "key.png", "pause.png", "restart.png", "endLevel.png", "pcPortrait.png", "npcPortrait.png", "collect.png", "back_arrow.png", "right_arrow.png", "left_arrow.png", "level_tile.png", "audio_off.png", "audio_on.png", "playerCharacter.png", "pushBox.png", "target.png", "locked.png", "unlocked.png"];
 }
