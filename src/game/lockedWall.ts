@@ -14,6 +14,7 @@ export function createLockedWall(x: number, y: number) {
     appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "locked.png" }),
     rigidBody: new BoxBody({ cx: x, cy: y, width: .8, height: 0.8 }, { kinematic: false, dynamic: false }),
     role: new Obstacle(),
+    extra: { isWall: true }
   })
 
   return lockedWall;
@@ -48,6 +49,7 @@ export function unlock(wall: Actor, passThroughId: Array<number>) {
     //create this new unlocked wall where the locked wall once was
     rigidBody: new BoxBody({ cx: wall.rigidBody.getCenter().x, cy: wall.rigidBody.getCenter().y, width: .8, height: 0.8 }, { passThroughId: passThroughId, kinematic: false, dynamic: false }),
     role: new Obstacle(),
+    extra: { isWall: false }
   })
   return unlockedWall
 }

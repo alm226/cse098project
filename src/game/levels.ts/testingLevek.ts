@@ -24,9 +24,12 @@ export function testingLevel(stage: Stage) {
     //idealy there should be more of them
     //in some sort of puzzle formation
     new Actor({
-        appearance: new FilledBox({ width: 8, height: 0.8, fillColor: "#00ff0010" }),
-        rigidBody: new BoxBody({ cx: 4, cy: 4, width: 7.6, height: 0.8 }, { kinematic: false, dynamic: false }),
+        appearance: new FilledBox({ width: 7, height: 0.8, fillColor: "#00ff00" }),
+        rigidBody: new BoxBody({ cx: 4, cy: 4, width: 7, height: 0.8 }, { kinematic: false, dynamic: false }),
         role: new Obstacle(),
+        extra: {
+            isWall: true
+        }
     });
 
     //Wall
@@ -36,6 +39,9 @@ export function testingLevel(stage: Stage) {
         appearance: new FilledBox({ width: 8, height: 0.8, fillColor: "#ff0000" }),
         rigidBody: new BoxBody({ cx: 12.8, cy: 4, width: 8, height: 0.8 }, { kinematic: false, dynamic: false }),
         role: new Obstacle(),
+        extra: {
+            isWall: true
+        }
     });
 
 
@@ -44,10 +50,11 @@ export function testingLevel(stage: Stage) {
 
 
     //create a pushBox at the coordinates (15,7) on pass through layer 7
-    let box = createPushBox(3, 1, [7]);
+    let box = createPushBox(3, 2, [7]);
+    createPushBox(3, 4, [7])
 
     //create a locked wall at the coorinates (5,7)
-    let lockedWall = createLockedWall(8.4, 4);
+    let lockedWall = createLockedWall(8, 4);
 
     //create a target at coordinates (14,3) which is receptive to box and unlocks lockedWall
     let target = createTarget(14, 3, [7], lockedWall);
@@ -80,7 +87,10 @@ export function testingLevel(stage: Stage) {
                 return true
             }
 
-        })
+        }),
+        extra: {
+            isNPC: true
+        }
     })
 
     //this will be wherever the end level is
@@ -113,7 +123,8 @@ export function testingLevel(stage: Stage) {
                 persist(pstore, "persistent_info");
                 return true;
             }
-        })
+        }),
+        extra: { isNPC: true }
     })
 
 

@@ -88,21 +88,25 @@ function createBoundary() {
         appearance: new FilledBox({ width: 16, height: .1, fillColor: "#ff0000" }),
         rigidBody: new BoxBody({ cx: 8, cy: -.05, width: 16, height: .1 }),
         role: new Obstacle(),
+        extra: { isWall: true }
     });
     new Actor({
         appearance: new FilledBox({ width: 16, height: .1, fillColor: "#ff0000" }),
         rigidBody: new BoxBody({ cx: 8, cy: 9.05, width: 16, height: .1 }),
         role: new Obstacle(),
+        extra: { isWall: true }
     });
     new Actor({
         appearance: new FilledBox({ width: .1, height: 9, fillColor: "#ff0000" }),
         rigidBody: new BoxBody({ cx: -.05, cy: 4.5, width: .1, height: 9 }),
         role: new Obstacle(),
+        extra: { isWall: true }
     });
     new Actor({
         appearance: new FilledBox({ width: .1, height: 9, fillColor: "#ff0000" }),
         rigidBody: new BoxBody({ cx: 16.05, cy: 4.5, width: .1, height: 9 }),
         role: new Obstacle(),
+        extra: { isWall: true }
     });
 }
 
