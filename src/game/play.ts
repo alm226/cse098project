@@ -13,6 +13,7 @@ import { levelTwo } from "./levels.ts/levelTwo";
 import { levelThree } from "./levels.ts/levelThree";
 import { levelFour } from "./levels.ts/levelFour";
 import { levelFive } from "./levels.ts/levelFive";
+import { testingLevel } from "./levels.ts/testingLevek"
 
 
 /**
@@ -34,6 +35,10 @@ export function gameBuilder(level: number) {
     else {
         stage.score.onLose = { level: level, builder: gameBuilder };
         stage.score.onWin = { level: 1, builder: splashBuilder };
+    }
+
+    if (level == -1) {
+        testingLevel(stage)
     }
 
     if (level == 1) {

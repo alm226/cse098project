@@ -17,6 +17,12 @@ import { createRestartButton, drawMuteButton } from "./common";
 export function pauseGame(level: number) {
     // Immediately install the overlay, to pause the game
     stage.requestOverlay((overlay: Scene, screenshot: ImageSprite | undefined) => {
+
+        //this is to fix a bug where in the debug level, if you pause the back button doesn't work
+        if (level == -1) {
+            level = 1
+        }
+
         // Draw the screenshot
         new Actor({ appearance: screenshot!, rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }), });
 

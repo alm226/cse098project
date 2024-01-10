@@ -74,12 +74,6 @@ export function splashBuilder(_level: number) {
                     new Actor({
                         appearance: new FilledBox({ width: 16, height: 9, fillColor: "#000000" }),
                         rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }),
-                        gestures: {
-                            tap: () => {
-                                stage.clearOverlay();
-                                return true;
-                            }
-                        },
                     });
 
                     let areYouSure = new Actor({

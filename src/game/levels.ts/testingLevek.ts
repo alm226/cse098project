@@ -11,7 +11,7 @@ import { createPushBox } from "../pushBox";
 import { createTarget } from "../target";
 import { textbox } from "../textbox";
 
-export function levelOne(stage: Stage) {
+export function testingLevel(stage: Stage) {
     stage.score.setVictoryGoodies(2, 0, 0, 0)
 
     //something to consider:
@@ -117,5 +117,5 @@ export function levelOne(stage: Stage) {
     })
 
 
-    welcomeMessage("Level one\nwip");
+    welcomeMessage("test level\nwip");
 }
