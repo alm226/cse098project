@@ -7,10 +7,6 @@ import { gameBuilder } from "./play";
 import { MusicComponent } from "../jetlag/Components/Music";
 import { persist, PStore } from "./common";
 
-/** This is for Session Storage */
-class SStore {
-    levelTally = 0; // Coins collected so far during this session
-}
 
 /**
  * buildChooserScreen draws the level chooser screens.
