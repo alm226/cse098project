@@ -48,6 +48,9 @@ export function pauseGame(level: number) {
         drawMuteButton({ scene: overlay, cx: 15.5, cy: 1.5, width: 1, height: 1 });
         createRestartButton({ scene: overlay, x: 15.5, y: 2.5, width: 1, height: 1 });
     }, true);
+
+    //reset escape key to summon pause
+
     stage.keyboard.setKeyUpHandler(KeyCodes.KEY_ESCAPE, () => (stage.clearOverlay()));
 
 
