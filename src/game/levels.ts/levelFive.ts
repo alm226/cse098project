@@ -3,6 +3,7 @@ import { BoxBody } from "../../jetlag/Components/RigidBody";
 import { Obstacle, Goodie } from "../../jetlag/Components/Role";
 import { Actor } from "../../jetlag/Entities/Actor";
 import { Stage } from "../../jetlag/Stage";
+import { PStore, persist } from "../common";
 import { createLockedWall } from "../lockedWall";
 import { welcomeMessage } from "../play";
 import { createPlayer } from "../playerCharacter";
@@ -107,6 +108,9 @@ export function levelFive(stage: Stage) {
                 }
                 //satisfy the win condition to move on
                 stage.score.setGoodieCount(0, 2)
+                let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore
+                pstore.levelsBeat++;
+                persist(pstore, "persistent_info");
                 return true
             }
 

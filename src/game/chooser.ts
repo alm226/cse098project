@@ -5,6 +5,12 @@ import { BoxBody } from "../jetlag/Components/RigidBody";
 import { splashBuilder } from "./splash";
 import { gameBuilder } from "./play";
 import { MusicComponent } from "../jetlag/Components/Music";
+import { persist, PStore } from "./common";
+
+/** This is for Session Storage */
+class SStore {
+    levelTally = 0; // Coins collected so far during this session
+}
 
 /**
  * buildChooserScreen draws the level chooser screens.
@@ -22,47 +28,70 @@ export function chooserBuilder(level: number) {
     // Paint the background white
     stage.backgroundColor = "#FFFFFF";
 
+    let levelsBeat = 0;
+    if (stage.storage.getPersistent("persistent_info") == undefined) {
+        levelsBeat = 0;
+        persist(new PStore(), "persistent_info"); // explicitly save it back
+    }
+    let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore;
+
+    console.log(pstore)
+
+
+
     // Draw some buttons, based on which chooser "level" we're on
+    //im sure there is a better way of doing this
     if (level == 1) {
         // Levels 1-4
-        drawLevelButton(5, 4, 1);
-        drawLevelButton(11, 4, 2);
-        drawLevelButton(5, 7, 3);
-        drawLevelButton(11, 7, 4);
+        if (pstore.levelsBeat >= 0) {
+            drawLevelButton(2, 4, 1);
+        }
+        if (pstore.levelsBeat >= 1) {
+            drawLevelButton(8, 4, 2);
+        }
+        if (pstore.levelsBeat >= 2) {
+            drawLevelButton(14, 4, 3);
+        }
+        if (pstore.levelsBeat >= 3) {
+            drawLevelButton(5, 7, 4);
+        }
+        if (pstore.levelsBeat >= 4) {
+            drawLevelButton(11, 7, 5);
+        }
     }
 
-    else if (level == 2) {
-        // Levels 5-8
-        drawLevelButton(5, 4, 5);
-        drawLevelButton(11, 4, 6);
-        drawLevelButton(5, 7, 7);
-        drawLevelButton(11, 7, 8);
-    }
-
-    else {
-        // Level 9
-        drawLevelButton(8, 5.5, 9);
-    }
-
-    // Add a button for going to the next chooser screen, but only if this isn't
-    // the last chooser screen
-    if (level < 3) {
-        new Actor({
-            appearance: new ImageSprite({ width: 1, height: 1, img: "right_arrow.png" }),
-            rigidBody: new BoxBody({ width: 1, height: 1, cx: 15.5, cy: 5.625 }),
-            gestures: { tap: () => { stage.switchTo(chooserBuilder, level + 1); return true; } }
-        });
-    }
-    // Add a button for going to the previous chooser screen, but only if this
-    // isn't the first chooser screen
-    if (level > 1) {
-        new Actor({
-            appearance: new ImageSprite({ width: 1, height: 1, img: "left_arrow.png" }),
-            rigidBody: new BoxBody({ width: 1, height: 1, cx: .5, cy: 5.625 }),
-            gestures: { tap: () => { stage.switchTo(chooserBuilder, level - 1); return true; } }
-        });
-    }
-
+    /*  else if (level == 2) {
+          // Levels 5-8
+          drawLevelButton(11, 4, 6);
+          drawLevelButton(5, 7, 7);
+          drawLevelButton(11, 7, 8);
+      }
+  
+      else {
+          // Level 9
+          drawLevelButton(8, 5.5, 9);
+      }
+  */
+    /*
+        // Add a button for going to the next chooser screen, but only if this isn't
+        // the last chooser screen
+        if (level < 3) {
+            new Actor({
+                appearance: new ImageSprite({ width: 1, height: 1, img: "right_arrow.png" }),
+                rigidBody: new BoxBody({ width: 1, height: 1, cx: 15.5, cy: 5.625 }),
+                gestures: { tap: () => { stage.switchTo(chooserBuilder, level + 1); return true; } }
+            });
+        }
+        // Add a button for going to the previous chooser screen, but only if this
+        // isn't the first chooser screen
+        if (level > 1) {
+            new Actor({
+                appearance: new ImageSprite({ width: 1, height: 1, img: "left_arrow.png" }),
+                rigidBody: new BoxBody({ width: 1, height: 1, cx: .5, cy: 5.625 }),
+                gestures: { tap: () => { stage.switchTo(chooserBuilder, level - 1); return true; } }
+            });
+        }
+    */
     // Add a button for returning to the splash screen
     new Actor({
         appearance: new ImageSprite({ width: 1, height: 1, img: "back_arrow.png" }),

@@ -4,6 +4,17 @@ import { Actor } from "../jetlag/Entities/Actor";
 import { Scene } from "../jetlag/Entities/Scene";
 import { stage } from "../jetlag/Stage";
 
+/** This is for Persistent Storage.  It shouldn't have any methods */
+export class PStore {
+    levelsBeat = 0;
+}
+
+/** Save a PStore */
+export function persist(p: PStore, key: string) {
+    stage.storage.setPersistent(key, JSON.stringify(p))
+}
+
+
 /**
  * Draw a mute button
  *

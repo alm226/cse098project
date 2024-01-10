@@ -1,5 +1,5 @@
 import { JetLagGameConfig } from "../jetlag/Config";
-import { initializeAndLaunch } from "../jetlag/Stage";
+import { initializeAndLaunch, stage } from "../jetlag/Stage";
 import { splashBuilder } from "./splash";
 
 /**
@@ -19,6 +19,10 @@ class Config implements JetLagGameConfig {
   soundNames = [];
   imageNames = ["key.png", "pause.png", "restart.png", "endLevel.png", "pcPortrait.png", "npcPortrait.png", "collect.png", "back_arrow.png", "right_arrow.png", "left_arrow.png", "level_tile.png", "audio_off.png", "audio_on.png", "playerCharacter.png", "pushBox.png", "target.png", "locked.png", "unlocked.png"];
 }
+
+
+
+
 
 // call the function that kicks off the game
 initializeAndLaunch("game-player", new Config(), splashBuilder);
