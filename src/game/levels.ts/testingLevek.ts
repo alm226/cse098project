@@ -51,6 +51,7 @@ export function testingLevel(stage: Stage) {
 
     //create a pushBox at the coordinates (15,7) on pass through layer 7
     let box = createPushBox(3, 2, [7]);
+    createPushBox(3, 4, [7])
 
     //create a locked wall at the coorinates (5,7)
     let lockedWall = createLockedWall(8, 4);
@@ -123,6 +124,7 @@ export function testingLevel(stage: Stage) {
                 return true;
             }
         }),
+        extra: { isNPC: true }
     })
 
 

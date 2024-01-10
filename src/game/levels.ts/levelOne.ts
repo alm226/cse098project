@@ -27,6 +27,7 @@ export function levelOne(stage: Stage) {
         appearance: new FilledBox({ width: 8, height: 0.8, fillColor: "#00ff00" }),
         rigidBody: new BoxBody({ cx: 4, cy: 4, width: 8, height: 0.8 }, { kinematic: false, dynamic: false }),
         role: new Obstacle(),
+        extra: { isWall: true }
     });
 
     //Wall
@@ -36,6 +37,8 @@ export function levelOne(stage: Stage) {
         appearance: new FilledBox({ width: 8, height: 0.8, fillColor: "#ff0000" }),
         rigidBody: new BoxBody({ cx: 12.8, cy: 4, width: 8, height: 0.8 }, { kinematic: false, dynamic: false }),
         role: new Obstacle(),
+        extra: { isWall: true }
+
     });
 
 

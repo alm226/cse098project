@@ -77,9 +77,12 @@ export function createPlayer(x: number, y: number, passThroughId: Array<number>)
  */
 function movementCheck(playerX: number, playerY: number, stage: Stage, xDir: number, yDir: number, player: Actor) {
     console.log("X direction: " + xDir + " Y direction: " + yDir)
-    for (let actor of stage.world.physics!.actorsAt({ x: playerX + xDir, y: playerY + yDir })) {
+    movementCheckHelper(playerX, playerY, stage, xDir, yDir, player)
+}
+
+function movementCheckHelper(x: number, y: number, stage: Stage, xDir: number, yDir: number, object: Actor) {
+    for (let actor of stage.world.physics!.actorsAt({ x: x + xDir, y: y + yDir })) {
         if (actor.appearance.z > -1) {
-            console.log(actor)
             if (actor.extra.isWall) {
                 console.log("Wall in the way :(")
                 return
@@ -99,6 +102,9 @@ function movementCheck(playerX: number, playerY: number, stage: Stage, xDir: num
                         console.log("Target")
 
                     }
+                    if (boxActor.extra.isPushBox) {
+                        movementCheckHelper(boxActor.rigidBody.getCenter().x, boxActor.rigidBody.getCenter().y, stage, xDir, yDir, boxActor)
+                    }
 
                 }
 
@@ -106,11 +112,13 @@ function movementCheck(playerX: number, playerY: number, stage: Stage, xDir: num
                 actor.rigidBody.setCenter(actor.rigidBody.getCenter().x + xDir, actor.rigidBody.getCenter().y + yDir)
 
             }
-
-
-
+            if (actor.extra.isNPC) {
+                console.log("npc")
+                object.role.onCollide(actor)
+            }
         }
     }
-    console.log("nothing in the way :)")
-    player.rigidBody.setCenter(player.rigidBody.getCenter().x + xDir, player.rigidBody.getCenter().y + yDir)
+
+    object.rigidBody.setCenter(object.rigidBody.getCenter().x + xDir, object.rigidBody.getCenter().y + yDir)
+
 }
