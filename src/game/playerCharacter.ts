@@ -1,6 +1,6 @@
 import { ImageSprite } from "../jetlag/Components/Appearance";
 import { ManualMovement } from "../jetlag/Components/Movement";
-import { BoxBody, CircleBody } from "../jetlag/Components/RigidBody";
+import { BoxBody } from "../jetlag/Components/RigidBody";
 import { Hero } from "../jetlag/Components/Role";
 import { Actor } from "../jetlag/Entities/Actor";
 import { KeyCodes } from "../jetlag/Services/Keyboard";
