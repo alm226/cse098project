@@ -11,8 +11,8 @@ import { Actor } from "../jetlag/Entities/Actor";
 export function createLockedWall(x: number, y: number) {
   //locked wall segment
   let lockedWall = new Actor({
-    appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "locked.png" }),
-    rigidBody: new BoxBody({ cx: x, cy: y, width: .8, height: 0.8 }, { kinematic: false, dynamic: false }),
+    appearance: new ImageSprite({ width: 1, height: 1, img: "locked.png" }),
+    rigidBody: new BoxBody({ cx: x, cy: y, width: 1, height: 1 }, { kinematic: false, dynamic: false }),
     role: new Obstacle(),
     extra: { isWall: true }
   })
@@ -22,7 +22,7 @@ export function createLockedWall(x: number, y: number) {
 
 export function createWallKey(wall: Actor) {
   let key = new Actor({
-    appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "key.png" }),
+    appearance: new ImageSprite({ width: 1, height: 1, img: "key.png" }),
     rigidBody: new CircleBody({ cx: 2, cy: 1, radius: 0.4 }),
     role: new Goodie({
       // This just updates the four scores
@@ -45,9 +45,9 @@ export function createWallKey(wall: Actor) {
 export function unlock(wall: Actor, passThroughId: Array<number>) {
   wall.enabled = false;
   let unlockedWall = new Actor({
-    appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "unlocked.png" }),
+    appearance: new ImageSprite({ width: 1, height: 1, img: "unlocked.png" }),
     //create this new unlocked wall where the locked wall once was
-    rigidBody: new BoxBody({ cx: wall.rigidBody.getCenter().x, cy: wall.rigidBody.getCenter().y, width: .8, height: 0.8 }, { passThroughId: passThroughId, kinematic: false, dynamic: false }),
+    rigidBody: new BoxBody({ cx: wall.rigidBody.getCenter().x, cy: wall.rigidBody.getCenter().y, width: 1, height: 1 }, { passThroughId: passThroughId, kinematic: false, dynamic: false }),
     role: new Obstacle(),
     extra: { isWall: false }
   })

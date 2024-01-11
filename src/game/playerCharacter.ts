@@ -1,6 +1,6 @@
 import { ImageSprite } from "../jetlag/Components/Appearance";
 import { ManualMovement } from "../jetlag/Components/Movement";
-import { CircleBody } from "../jetlag/Components/RigidBody";
+import { BoxBody, CircleBody } from "../jetlag/Components/RigidBody";
 import { Hero } from "../jetlag/Components/Role";
 import { Actor } from "../jetlag/Entities/Actor";
 import { KeyCodes } from "../jetlag/Services/Keyboard";
@@ -16,8 +16,8 @@ import { Stage, stage } from "../jetlag/Stage";
 export function createPlayer(x: number, y: number, passThroughId: Array<number>) {
     //player character
     let player = new Actor({
-        appearance: new ImageSprite({ width: 0.8, height: 0.8, z: 1, img: "playerCharacter.png" }),
-        rigidBody: new CircleBody({ cx: x, cy: y, radius: 0.4 }, { passThroughId: passThroughId }),
+        appearance: new ImageSprite({ width: 1, height: 1, z: 1, img: "playerCharacter.png" }),
+        rigidBody: new BoxBody({ cx: x, cy: y, width: 1, height: 1 }, { passThroughId: passThroughId }),
         movement: new ManualMovement(),
         role: new Hero(),
     });

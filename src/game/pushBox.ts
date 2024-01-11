@@ -13,9 +13,9 @@ import { Actor } from "../jetlag/Entities/Actor";
 export function createPushBox(x: number, y: number, passThroughId: Array<number>) {
     //box to push
     let box = new Actor({
-        appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "pushBox.png" }),
+        appearance: new ImageSprite({ width: 1, height: 1, img: "pushBox.png" }),
         //TODO: do we want to disable rotation?
-        rigidBody: new BoxBody({ cx: x, cy: y, width: 0.8, height: 0.8 }, { passThroughId: passThroughId, dynamic: true, disableRotation: true }),
+        rigidBody: new BoxBody({ cx: x, cy: y, width: 1, height: 1 }, { passThroughId: passThroughId, dynamic: true, disableRotation: true }),
         role: new Hero(),
         //we use the extra field to hold isPushBox
         //and in target.ts we check to see if its there
