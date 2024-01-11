@@ -4,7 +4,6 @@ import { BoxBody } from "../../jetlag/Components/RigidBody";
 import { Obstacle, Goodie } from "../../jetlag/Components/Role";
 import { Actor } from "../../jetlag/Entities/Actor";
 import { Stage } from "../../jetlag/Stage";
-import { PStore, persist } from "../common";
 import { createLockedWall } from "../lockedWall";
 import { welcomeMessage } from "../play";
 import { createPlayer } from "../playerCharacter";
@@ -54,25 +53,25 @@ export function testingLevel(stage: Stage) {
 
 
     //create a player character at the coordinates (2,3) on pass through layer 8
-    let player = createPlayer(2, 3, [8]);
+    createPlayer(2, 3, [8]);
 
 
     //create a pushBox at the coordinates (15,7) on pass through layer 7
-    let box = createPushBox(3, 2, [7]);
+    createPushBox(3, 2, [7]);
     createPushBox(3, 4, [7])
 
     //create a locked wall at the coorinates (5,7)
     let lockedWall = createLockedWall(8, 4);
 
     //create a target at coordinates (14,3) which is receptive to box and unlocks lockedWall
-    let target = createTarget(14, 3, [7], lockedWall);
+    createTarget(14, 3, [7], lockedWall);
 
     //create a general purpose collectable
     //potential ideas are a lab co-worker for lore dispensing
     //or equipment to fix 
     //or papers to read
     //the possibilities are endless
-    let collect = new Actor({
+    new Actor({
         //obviously all the programmer art is temporary
         //but "collect.png" should be replaced with something specific whenever this code is used
         appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "collect.png" }),
@@ -103,7 +102,7 @@ export function testingLevel(stage: Stage) {
 
     //this will be wherever the end level is
     //potentially stairs? idk
-    let endLevel = new Actor({
+    new Actor({
         appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "endLevel.png" }),
         rigidBody: new BoxBody({ cx: 4, cy: 7, width: 0.8, height: 0.8 }),
         role: new Goodie({

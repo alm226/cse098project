@@ -2,7 +2,7 @@ import { stage } from "../jetlag/Stage";
 import { Scene } from "../jetlag/Entities/Scene";
 import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
-import { BoxBody, CircleBody } from "../jetlag/Components/RigidBody";
+import { BoxBody } from "../jetlag/Components/RigidBody";
 import { Obstacle } from "../jetlag/Components/Role";
 import { createRestartButton } from "./common";
 import { splashBuilder } from "./splash";
@@ -147,6 +147,7 @@ export function welcomeMessage(message: string) {
  *
  * @param message A message to display in the middle of the screen
  */
+/*
 function winMessage(message: string) {
     stage.score.winSceneBuilder = (overlay: Scene) => {
         new Actor({
@@ -167,4 +168,4 @@ function winMessage(message: string) {
     };
 }
 
-
+* /*/

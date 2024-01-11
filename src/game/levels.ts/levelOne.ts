@@ -1,5 +1,5 @@
 import { FilledBox, ImageSprite } from "../../jetlag/Components/Appearance";
-import { BoxBody, CircleBody } from "../../jetlag/Components/RigidBody";
+import { BoxBody } from "../../jetlag/Components/RigidBody";
 import { Obstacle, Goodie } from "../../jetlag/Components/Role";
 import { Actor } from "../../jetlag/Entities/Actor";
 import { Stage } from "../../jetlag/Stage";
@@ -15,6 +15,7 @@ import { textbox } from "../textbox";
 export function levelOne(stage: Stage) {
     stage.score.setVictoryGoodies(2, 0, 0, 0)
     //16x9
+    //there's still a lot you can't do with the basic editor
     //H = player character (you have to add this yourself)
     //b = box
     //! = target           (you have to add this yourself)
@@ -33,7 +34,7 @@ export function levelOne(stage: Stage) {
         "################",
     ];
 
-    let player = createPlayer(2, 1, [8]);
+    createPlayer(2, 1, [8]);
 
     // Create walls and goodies from the `levelLayout`
     for (let row = 0; row < levelLayout.length; row++) {
@@ -53,7 +54,7 @@ export function levelOne(stage: Stage) {
             else if (levelLayout[row][col] === "@") {
                 //this will be wherever the end level is
                 //potentially stairs? idk
-                let endLevel = new Actor({
+                new Actor({
                     appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "endLevel.png" }),
                     rigidBody: new BoxBody({ cx: col, cy: row, width: 0.8, height: 0.8 }),
                     role: new Goodie({

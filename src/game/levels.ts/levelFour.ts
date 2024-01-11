@@ -33,7 +33,7 @@ export function levelFour(stage: Stage) {
         "################",
     ];
 
-    let player = createPlayer(2, 1, [8]);
+    createPlayer(2, 1, [8]);
 
     // Create walls and goodies from the `levelLayout`
     for (let row = 0; row < levelLayout.length; row++) {
@@ -53,7 +53,7 @@ export function levelFour(stage: Stage) {
             else if (levelLayout[row][col] === "@") {
                 //this will be wherever the end level is
                 //potentially stairs? idk
-                let endLevel = new Actor({
+                new Actor({
                     appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "endLevel.png" }),
                     rigidBody: new BoxBody({ cx: col, cy: row, width: 0.8, height: 0.8 }),
                     role: new Goodie({
