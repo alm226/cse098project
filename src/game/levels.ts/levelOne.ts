@@ -16,8 +16,11 @@ export function levelOne(stage: Stage) {
     stage.score.setVictoryGoodies(2, 0, 0, 0)
     //16x9
     //there's still a lot you can't do with the basic editor
-    //H = player character (you have to add this yourself)
+    //it just places boxes and walls rn
+    //but it can be useful to plot out a level here or something
     //b = box
+    //# = wall
+    //H = player character (you have to add this yourself)
     //! = target           (you have to add this yourself)
     //1 = locked wall      (you have to add this yourself)
     //@ = Level exit       (you may have to add this yourself if you want to tweak it)
