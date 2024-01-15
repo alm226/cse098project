@@ -28,7 +28,7 @@ export function pauseGame(level: number) {
 
         // It's always good to have a way to go back to the chooser:
         new Actor({
-            appearance: new ImageSprite({ img: "back_arrow.png", width: 1, height: 1 }),
+            appearance: new ImageSprite({ img: "back_button.png", width: 1, height: 1 }),
             rigidBody: new BoxBody({ cx: 15.5, cy: .5, width: 1, height: 1 }, { scene: overlay }),
             gestures: { tap: () => { stage.clearOverlay(); stage.switchTo(chooserBuilder, Math.ceil(level / 4)); return true; } }
         });
@@ -49,9 +49,18 @@ export function pauseGame(level: number) {
         createRestartButton({ scene: overlay, x: 15.5, y: 2.5, width: 1, height: 1 });
     }, true);
 
-    //reset escape key to summon pause
+    //set ESC key to unpause
+    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_ESCAPE, () => (unpauseGame(level)));
+}
 
-    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_ESCAPE, () => (stage.clearOverlay()));
+/**
+ * Delete the pause overlay, resuming game progress.
+ * 
+ * @param level The current level
+ */
+function unpauseGame(level: number) {
+    stage.clearOverlay()
 
-
+    //set ESC key back to pause
+    stage.keyboard.setKeyUpHandler(KeyCodes.KEY_ESCAPE, () => (pauseGame(level)));
 }

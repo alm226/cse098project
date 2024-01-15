@@ -45,7 +45,8 @@ export function levelOne(stage: Stage) {
             if (levelLayout[row][col] === "#") {
                 new Actor({
                     rigidBody: new BoxBody({ cx: col, cy: row, width: 1, height: 1 }),
-                    appearance: new FilledBox({ width: 1, height: 1, fillColor: "#ffffff" }),
+                    //appearance: new FilledBox({ width: 1, height: 1, fillColor: "#ffffff" }),
+                    appearance: new ImageSprite({ width: 1, height: 1, img: "wall_tile.png" }),
                     role: new Obstacle(),
                     extra: { isWall: true }
                 });
@@ -94,7 +95,7 @@ export function levelOne(stage: Stage) {
                 new Actor({
                     //obviously all the programmer art is temporary
                     //but "collect.png" should be replaced with something specific whenever this code is used
-                    appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "collect.png" }),
+                    appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "astral_sprite_npc.png" }),
                     rigidBody: new BoxBody({ cx: col, cy: row, width: 0.8, height: 0.8 }),
                     role: new Goodie({
                         onCollect: () => {

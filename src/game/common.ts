@@ -30,12 +30,12 @@ export function drawMuteButton(cfg: { cx: number, cy: number, width: number, hei
     // Draw a mute button
     let getVolume = () => (stage.storage.getPersistent("volume") ?? "1") === "1";
     let mute = new Actor({
-        appearance: new ImageSprite({ width: cfg.width, height: cfg.height, img: "audio_off.png" }),
+        appearance: new ImageSprite({ width: cfg.width, height: cfg.height, img: "unmute_button.png" }),
         rigidBody: new BoxBody({ cx: cfg.cx, cy: cfg.cy, width: cfg.width, height: cfg.height }, { scene: cfg.scene }),
     });
     // If the game is not muted, switch the image
     if (getVolume())
-        (mute.appearance as ImageSprite).setImage("audio_on.png");
+        (mute.appearance as ImageSprite).setImage("mute_button.png");
     // when the obstacle is touched, switch the mute state and update the picture
     mute.gestures = {
         tap: () => {
@@ -45,8 +45,8 @@ export function drawMuteButton(cfg: { cx: number, cy: number, width: number, hei
             // update all music
             stage.musicLibrary.resetMusicVolume(volume);
 
-            if (getVolume()) (mute.appearance as ImageSprite).setImage("audio_on.png");
-            else (mute.appearance as ImageSprite).setImage("audio_off.png");
+            if (getVolume()) (mute.appearance as ImageSprite).setImage("mute_button.png");
+            else (mute.appearance as ImageSprite).setImage("unmute_button.png");
             return true;
         }
     };
@@ -64,7 +64,7 @@ export function drawMuteButton(cfg: { cx: number, cy: number, width: number, hei
  */
 export function createRestartButton(cfg: { scene: Scene, x: number, y: number, width: number, height: number }) {
     new Actor({
-        appearance: new ImageSprite({ width: .8, height: .8, img: "restart.png" }),
+        appearance: new ImageSprite({ width: 1, height: 1, img: "restart1.png" }),
         rigidBody: new BoxBody({ cx: cfg.x, cy: cfg.y, height: cfg.height, width: cfg.width }, { scene: cfg.scene }),
         gestures: { tap: () => { stage.score.loseLevel(); return true } }
     })

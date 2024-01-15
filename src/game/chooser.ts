@@ -92,7 +92,7 @@ export function chooserBuilder(level: number) {
     */
     // Add a button for returning to the splash screen
     new Actor({
-        appearance: new ImageSprite({ width: 1, height: 1, img: "back_arrow.png" }),
+        appearance: new ImageSprite({ width: 1, height: 1, img: "back_button.png" }),
         rigidBody: new BoxBody({ width: 1, height: 1, cx: 15.5, cy: 8.5 }),
         gestures: { tap: () => { stage.switchTo(splashBuilder, 1); return true; } }
     });
