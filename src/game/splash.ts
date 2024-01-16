@@ -22,6 +22,7 @@ import { Scene } from "../jetlag/Entities/Scene";
 export function splashBuilder(_level: number) {
     let vPlayer = document.getElementById("video-player")
     let gPlayer = document.getElementById("game-player")
+    let myVideo = document.getElementById("myVideo") as HTMLVideoElement
 
     // Draw some text.  Tapping its *rigidBody* will go to the first page of the
     // level chooser
@@ -30,7 +31,15 @@ export function splashBuilder(_level: number) {
         rigidBody: new BoxBody({ cx: 7, cy: 0, width: 1, height: 0.5 }),
         gestures: {
             tap: () => {
-                if (vPlayer != null && gPlayer != null) { gPlayer.style.display = "none"; vPlayer.style.display = "block"; }
+                if (vPlayer != null && gPlayer != null && myVideo != null) {
+                    let getVolume = () => (stage.storage.getPersistent("volume") ?? "1") === "1";
+                    if (getVolume()) {
+                        gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.play();
+                    }
+                    else {
+                        gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = true; myVideo.play();
+                    }
+                }
 
                 return true;
             }
@@ -39,11 +48,11 @@ export function splashBuilder(_level: number) {
 
 
 
-    // start the music
-    /*    if (stage.gameMusic === undefined)
-            stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("tune2.ogg"));
-        stage.gameMusic.play();
-    */
+    //start the music
+    if (stage.gameMusic === undefined)
+        stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("tune2.ogg"));
+    stage.gameMusic.play();
+
     // Draw a brown box at the top of the screen, put some text in it
     new Actor({
         appearance: new TextSprite({ center: false, face: "Times New Roman", size: 50, color: "#000000" }, "Ghosted: The Game"),
