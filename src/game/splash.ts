@@ -20,6 +20,25 @@ import { Scene } from "../jetlag/Entities/Scene";
  * @param level Which splash screen should be displayed
  */
 export function splashBuilder(_level: number) {
+    let vPlayer = document.getElementById("video-player")
+    let gPlayer = document.getElementById("game-player")
+
+    // Draw some text.  Tapping its *rigidBody* will go to the first page of the
+    // level chooser
+    new Actor({
+        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "test"),
+        rigidBody: new BoxBody({ cx: 7, cy: 0, width: 1, height: 0.5 }),
+        gestures: {
+            tap: () => {
+                if (vPlayer != null && gPlayer != null) { gPlayer.style.display = "none"; vPlayer.style.display = "block"; }
+
+                return true;
+            }
+        }
+    });
+
+
+
     // start the music
     /*    if (stage.gameMusic === undefined)
             stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("tune2.ogg"));
