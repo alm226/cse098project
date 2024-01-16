@@ -26,15 +26,16 @@ export function levelOne(stage: Stage) {
     //@ = Level exit       (you may have to add this yourself if you want to tweak it)
     //O = NPC              (you may as well add this yourself tbh)
     const levelLayout = [
-        "################",
-        "#H             #",
-        "#      b       #",
-        "#              #",
-        "#      !       #",
-        "#              #",
-        "#######1########",
-        "#@            O#",
-        "################",
+        "#################",
+        "#H              #",
+        "#      b        #",
+        "#               #",
+        "#      !        #",
+        "#               #",
+        "#               #",
+        "#######1#########",
+        "#@             O#",
+        "#################",
     ];
 
     createPlayer(2, 1, [8]);
@@ -124,7 +125,7 @@ export function levelOne(stage: Stage) {
         }
     }
 
-    let lockedWall = createLockedWall(7, 6);
+    let lockedWall = createLockedWall(7, 7);
     createTarget(7, 4, [7], lockedWall);
 
 
