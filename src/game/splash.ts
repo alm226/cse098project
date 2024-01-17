@@ -1,11 +1,10 @@
-import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
+import { FilledBox, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
 import { BoxBody } from "../jetlag/Components/RigidBody";
 import { MusicComponent } from "../jetlag/Components/Music";
 import { chooserBuilder } from "./chooser";
-import { helpBuilder } from "./help";
-import { PStore, drawMuteButton, persist } from "./common";
+import { PStore, drawMuteButton, persist, videoCutscene } from "./common";
 import { gameBuilder } from "./play";
 import { creditsBuilder } from "./credits";
 import { Scene } from "../jetlag/Entities/Scene";
@@ -20,11 +19,12 @@ import { Scene } from "../jetlag/Entities/Scene";
  * @param level Which splash screen should be displayed
  */
 export function splashBuilder(_level: number) {
-    // start the music
-    /*    if (stage.gameMusic === undefined)
-            stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("tune2.ogg"));
-        stage.gameMusic.play();
-    */
+
+    //start the music
+    if (stage.gameMusic === undefined)
+        stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("tune2.ogg"));
+    stage.gameMusic.play();
+
     // Draw a brown box at the top of the screen, put some text in it
     new Actor({
         appearance: new TextSprite({ center: false, face: "Times New Roman", size: 50, color: "#000000" }, "Ghosted: The Game"),
@@ -44,7 +44,19 @@ export function splashBuilder(_level: number) {
     new Actor({
         appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "Play"),
         rigidBody: new BoxBody({ cx: 0, cy: 3, width: 1, height: 0.5 }),
-        gestures: { tap: () => { stage.switchTo(gameBuilder, 1); return true; } }
+        gestures: {
+            tap: () => {
+
+                //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
+                //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
+                videoCutscene("TESTVIDEO.mp4")
+
+                stage.switchTo(gameBuilder, 1);
+                return true;
+
+
+            }
+        }
     });
 
     // Draw some text.  Tapping its *rigidBody* will go to the first page of the

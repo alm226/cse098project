@@ -22,7 +22,9 @@ class Config implements JetLagGameConfig {
     "left_arrow.png", "level_tile.png", "audio_off.png", "audio_on.png", "playerCharacter.png",
     "pushBox.png", "target.png", "locked.png", "unlocked.png", "restart1.png",
     "mute_button.png", "unmute_button.png", "back_button.png", "moveable_block.png",
-    "wall_tile.png", "stairs_tile.png", "astral_sprite_npc.png"];
+    "wall_tile.png", "stairs_tile.png", "astral_sprite_npc.png", "level_1_button.png",
+    "level_2_button.png", "level_3_button.png", "level_4_button.png", "level_5_button.png", "play_button.png",
+    "Delete_data_button.png", "Credits_button.png"];
 }
 
 

@@ -23,6 +23,31 @@
     <div id="game-player"></div>
   </div>
   <script src="./game.js"></script>
+
+  <div>
+
+
+    <div hidden id="videoPlayer">
+      <video id="video" width="100%" height="900"></video>
+
+      <script type='text/javascript'>
+        document.getElementById('video').addEventListener('ended', myHandler, false);
+        function myHandler(e) {
+          let vPlayer = document.getElementById("videoPlayer")
+          let gPlayer = document.getElementById("game-player")
+          let video = document.getElementById("video")
+          if (vPlayer != null && gPlayer != null) { gPlayer.style.display = "block"; vPlayer.style.display = "none"; vPlayer.style.visibility = 'hidden' }
+
+        }
+      </script>
+    </div>
+
+
+
+
+
+  </div>
+
 </body>
 
 </html>
