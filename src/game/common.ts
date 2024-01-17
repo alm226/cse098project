@@ -14,46 +14,52 @@ export function persist(p: PStore, key: string) {
     stage.storage.setPersistent(key, JSON.stringify(p))
 }
 
+/***
+ * function to play a video cutscene
+ * assumes everything is an mp4 and also in the assets folder
+ * @param sourceName the name of the mp4 video in the assets folder 
+ */
 export function videoCutscene(sourceName: string) {
     //https://stackoverflow.com/questions/5235145/changing-source-on-html5-video-tag
 
-    let vPlayer = document.getElementById("videoPlayer")
-    let gPlayer = document.getElementById("game-player")
-    let myVideo = document.getElementById("video") as HTMLVideoElement
+    //the HTML elements
+    let vPlayer = document.getElementById("videoPlayer") //this is the div that has the video
+    let gPlayer = document.getElementById("game-player") //this is the div that has the game
+    let myVideo = document.getElementById("video") as HTMLVideoElement //this is the video element
 
+    //remove the old video
     while (myVideo.firstChild) {
         myVideo.removeChild(myVideo.firstChild);
     }
 
+    //create the source (the video we want to play)
     var source = document.createElement('source');
 
+    //set the source to play the video
     source.setAttribute('src', "../../assets/" + sourceName);
     source.setAttribute('type', 'video/mp4');
 
-
+    //load the video
     myVideo.load();
 
-
+    //this handles switching divs to the video player
     if (myVideo != null && vPlayer != null && gPlayer != null) {
+        //we want to make sure that the video respects the user's volume choice
         let getVolume = () => (stage.storage.getPersistent("volume") ?? "1") === "1";
+        //set the hidden div to visable
         vPlayer.style.visibility = 'visible'
 
+        //this does something important because it doesn't work wihtout it
+        myVideo.appendChild(source);
+
+        //play unmuted
         if (getVolume()) {
             gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = false; myVideo.play();
         }
+        //play muted
         else {
             gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = true; myVideo.play();
         }
-
-
-        myVideo.appendChild(source);
-        myVideo.play();
-        console.log({
-            src: source.getAttribute('src'),
-            type: source.getAttribute('type'),
-        });
-
-
 
     }
 
