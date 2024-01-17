@@ -16,8 +16,8 @@ import { Stage, stage } from "../jetlag/Stage";
 export function createPlayer(x: number, y: number, passThroughId: Array<number>) {
     //player character
     let player = new Actor({
-        appearance: new ImageSprite({ width: 1, height: 1, z: 1, img: "playerCharacter.png" }),
-        rigidBody: new BoxBody({ cx: x, cy: y, width: 1, height: 1 }, { passThroughId: passThroughId }),
+        appearance: new ImageSprite({ width: 0.9, height: 0.9, z: 1, img: "playerCharacter.png" }),
+        rigidBody: new BoxBody({ cx: x, cy: y, width: 0.9, height: 0.9 }, { passThroughId: passThroughId }),
         movement: new ManualMovement(),
         role: new Hero(),
     });
