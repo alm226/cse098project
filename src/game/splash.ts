@@ -22,7 +22,7 @@ export function splashBuilder(_level: number) {
 
     //start the music
     if (stage.gameMusic === undefined)
-        stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("tune2.ogg"));
+        stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("Dystopian.wav"));
     stage.gameMusic.play();
 
     // Draw a brown box at the top of the screen, put some text in it

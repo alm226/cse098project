@@ -1,5 +1,5 @@
 import { JetLagGameConfig } from "../jetlag/Config";
-import { initializeAndLaunch, stage } from "../jetlag/Stage";
+import { initializeAndLaunch } from "../jetlag/Stage";
 import { splashBuilder } from "./splash";
 
 /**

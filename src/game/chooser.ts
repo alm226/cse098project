@@ -1,10 +1,9 @@
 import { Actor } from "../jetlag/Entities/Actor";
-import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
+import { ImageSprite } from "../jetlag/Components/Appearance";
 import { stage } from "../jetlag/Stage";
 import { BoxBody } from "../jetlag/Components/RigidBody";
 import { splashBuilder } from "./splash";
 import { gameBuilder } from "./play";
-import { MusicComponent } from "../jetlag/Components/Music";
 import { persist, PStore } from "./common";
 
 
@@ -34,27 +33,26 @@ export function chooserBuilder(level: number) {
     console.log(pstore)
 
 
-
     // Draw some buttons, based on which chooser "level" we're on
     //im sure there is a better way of doing this
     if (level == 1) {
-        drawLevelButton(14, 1, -1)
+        drawLevelButton(14, 1, -1, 0)
 
         // Levels 1-4
         if (pstore.levelsBeat >= 0) {
-            drawLevelButton(2, 4, 1);
+            drawLevelButton(2, 4, 1, 0);
         }
         if (pstore.levelsBeat >= 1) {
-            drawLevelButton(8, 4, 2);
+            drawLevelButton(8, 4, 2, 1);
         }
         if (pstore.levelsBeat >= 2) {
-            drawLevelButton(14, 4, 3);
+            drawLevelButton(14, 4, 3, 2);
         }
         if (pstore.levelsBeat >= 3) {
-            drawLevelButton(5, 7, 4);
+            drawLevelButton(5, 7, 4, 3);
         }
         if (pstore.levelsBeat >= 4) {
-            drawLevelButton(11, 7, 5);
+            drawLevelButton(11, 7, 5, 4);
         }
     }
 
@@ -105,16 +103,18 @@ export function chooserBuilder(level: number) {
  * @param cy    Y coordinate of the center of the button
  * @param level which level to play when the button is tapped
  */
-function drawLevelButton(cx: number, cy: number, level: number) {
+function drawLevelButton(cx: number, cy: number, level: number, levelButtonAssetNamesIndex: number) {
+    let levelButtonAssetNames = ["level_1_button.png", "level_2_button.png", "level_3_button.png", "level_4_button.png", "level_5_button.png"]
+
     // Drawing a tile.  Touching it goes to a level.
     new Actor({
-        appearance: new ImageSprite({ width: 2, height: 2, img: "level_tile.png" }),
+        appearance: new ImageSprite({ width: 2, height: 2, img: levelButtonAssetNames[levelButtonAssetNamesIndex] }),
         rigidBody: new BoxBody({ cx, cy, width: 2, height: 2 }),
         gestures: { tap: () => { stage.switchTo(gameBuilder, level); return true; } }
     });
-    // Put some text over it
-    new Actor({
-        appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 56, z: 0 }, () => level + ""),
-        rigidBody: new BoxBody({ cx, cy, width: .1, height: .1 }),
-    });
+    //    // Put some text over it
+    //    new Actor({
+    //        appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 56, z: 0 }, () => level + ""),
+    //        rigidBody: new BoxBody({ cx, cy, width: .1, height: .1 }),
+    //    });
 }
