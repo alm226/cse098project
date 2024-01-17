@@ -13,12 +13,6 @@ import { textbox } from "../textbox";
 
 
 export function levelOne(stage: Stage) {
-    let vPlayer = document.getElementById("postLevelOneCutscene")
-    let gPlayer = document.getElementById("game-player")
-    let myVideo = document.getElementById("postLevelOneVideo") as HTMLVideoElement
-
-
-
 
     stage.score.setVictoryGoodies(2, 0, 0, 0)
     //16x9

@@ -19,10 +19,6 @@ import { Scene } from "../jetlag/Entities/Scene";
  * @param level Which splash screen should be displayed
  */
 export function splashBuilder(_level: number) {
-    //video cutscene components
-    let vPlayer = document.getElementById("introCutscene")
-    let gPlayer = document.getElementById("game-player")
-    let myVideo = document.getElementById("introVideo") as HTMLVideoElement
 
     //start the music
     if (stage.gameMusic === undefined)
