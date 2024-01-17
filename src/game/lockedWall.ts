@@ -44,12 +44,12 @@ export function createWallKey(wall: Actor) {
  */
 export function unlock(wall: Actor, passThroughId: Array<number>) {
   wall.enabled = false;
-  let unlockedWall = new Actor({
-    appearance: new ImageSprite({ width: 1, height: 1, img: "unlocked.png" }),
-    //create this new unlocked wall where the locked wall once was
-    rigidBody: new BoxBody({ cx: wall.rigidBody.getCenter().x, cy: wall.rigidBody.getCenter().y, width: 1, height: 1 }, { passThroughId: passThroughId, kinematic: false, dynamic: false }),
-    role: new Obstacle(),
-    extra: { isWall: false }
-  })
-  return unlockedWall
+  /*  let unlockedWall = new Actor({
+      appearance: new ImageSprite({ width: 1, height: 1, img: "unlocked.png" }),
+      //create this new unlocked wall where the locked wall once was
+      rigidBody: new BoxBody({ cx: wall.rigidBody.getCenter().x, cy: wall.rigidBody.getCenter().y, width: 1, height: 1 }, { passThroughId: passThroughId, kinematic: false, dynamic: false }),
+      role: new Obstacle(),
+      extra: { isWall: false }
+    })
+    return unlockedWall*/
 }
