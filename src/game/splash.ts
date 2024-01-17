@@ -47,20 +47,9 @@ export function splashBuilder(_level: number) {
         gestures: {
             tap: () => {
 
+                //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
+                //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
                 videoCutscene("TESTVIDEO.mp4")
-                /*
-                if (vPlayer != null && gPlayer != null && myVideo != null) {
-                    let getVolume = () => (stage.storage.getPersistent("volume") ?? "1") === "1";
-                    vPlayer.style.visibility = 'visible'
-                    if (getVolume()) {
-                        gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = false; myVideo.play();
-                    }
-                    else {
-                        gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = true; myVideo.play();
-                    }
-                }*/
-
-
 
                 stage.switchTo(gameBuilder, 1);
                 return true;

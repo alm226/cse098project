@@ -82,7 +82,14 @@ export function levelOne(stage: Stage) {
                                 return false
                             }
                             //satisfy the win condition to move on
-                            videoCutscene("XD6FOwU4kzcnrCcn.mp4")
+
+
+                            //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
+                            //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
+                            videoCutscene("TESTVIDEO.mp4")
+
+
+
                             stage.score.setGoodieCount(0, 2)
                             let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore
                             pstore.levelsBeat++;

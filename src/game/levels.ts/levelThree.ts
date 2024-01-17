@@ -3,7 +3,7 @@ import { BoxBody } from "../../jetlag/Components/RigidBody";
 import { Obstacle, Goodie } from "../../jetlag/Components/Role";
 import { Actor } from "../../jetlag/Entities/Actor";
 import { Stage } from "../../jetlag/Stage";
-import { PStore, persist } from "../common";
+import { PStore, persist, videoCutscene } from "../common";
 import { createLockedWall } from "../lockedWall";
 import { welcomeMessage } from "../play";
 import { createPlayer } from "../playerCharacter";
@@ -74,6 +74,14 @@ export function levelThree(stage: Stage) {
                                 textbox(messages, ["npcPortrait.png", "pcPortrait.png"], order);
                                 return false
                             }
+
+
+                            //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
+                            //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
+                            videoCutscene("TESTVIDEO.mp4")
+
+
+
                             //satisfy the win condition to move on
                             stage.score.setGoodieCount(0, 2)
                             let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore
