@@ -24,18 +24,18 @@ export function levelThree(stage: Stage) {
     const levelLayout = [
         "#################",
         "#H              #",
-        "#      b        #",
-        "#               #",
-        "#      !        #",
-        "#               #",
-        "#               #",
+        "# b             #",
+        "##1##########  ##",
+        "#         !     #",
+        "# b##############",
+        "#              !#",
         "#######1#########",
         "#@             O#",
         "#################",
     ];
 
 
-    createPlayer(2, 1, [8]);
+    createPlayer(1, 1, [8]);
 
     // Create walls and goodies from the `levelLayout`
     for (let row = 0; row < levelLayout.length; row++) {
@@ -124,8 +124,11 @@ export function levelThree(stage: Stage) {
         }
     }
 
-    let lockedWall = createLockedWall(7, 6);
-    createTarget(7, 4, [7], lockedWall);
+    let otherLockedWall = createLockedWall(2, 3);
+    createTarget(4, 4, [7], otherLockedWall)
+
+    let lockedWall = createLockedWall(7, 7);
+    createTarget(15, 6, [7], lockedWall);
 
 
 

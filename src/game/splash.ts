@@ -62,8 +62,8 @@ export function splashBuilder(_level: number) {
     // Draw some text.  Tapping its *rigidBody* will go to the first page of the
     // level chooser
     new Actor({
-        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "Level Select"),
-        rigidBody: new BoxBody({ cx: 0, cy: 4, width: 1, height: 0.5 }),
+        appearance: new ImageSprite({ width: 1, height: 1, img: "level_select_button.png" }),
+        rigidBody: new BoxBody({ cx: 1, cy: 4, width: 1, height: 0.5 }),
         gestures: { tap: () => { stage.switchTo(chooserBuilder, 1); return true; } }
     });
 
