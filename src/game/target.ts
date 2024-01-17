@@ -25,7 +25,11 @@ export function createTarget(x: number, y: number, passThroughId: Array<number>,
                 //has isPushBox in its extra field
                 if (collisionActor.extra.isPushBox) {
                     thisTarget.enabled = false;
-                    collisionActor.enabled = false;
+
+                    if (collisionActor.extra.isDestroyed) {
+                        collisionActor.enabled = false;
+                    }
+
                     unlock(lockedWall, [8]);
                 }
             },

@@ -50,7 +50,7 @@ export function levelThree(stage: Stage) {
                 });
             }
             else if (levelLayout[row][col] === "b") {
-                createPushBox(col, row, [7])
+                createPushBox(col, row, [7], true)
             }
 
             else if (levelLayout[row][col] === "@") {

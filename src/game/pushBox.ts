@@ -10,7 +10,7 @@ import { Actor } from "../jetlag/Entities/Actor";
  * @param y the Y coordinate to create the push box at
  * @passThroughId the pass through id array for this push box
  */
-export function createPushBox(x: number, y: number, passThroughId: Array<number>) {
+export function createPushBox(x: number, y: number, passThroughId: Array<number>, isDestroyed?: boolean) {
     //box to push
     let box = new Actor({
         appearance: new ImageSprite({ width: 0.9, height: 0.9, img: "moveable_block.png" }),
@@ -20,7 +20,7 @@ export function createPushBox(x: number, y: number, passThroughId: Array<number>
         //we use the extra field to hold isPushBox
         //and in target.ts we check to see if its there
         //so the target knows if a hero is a pushBox or not
-        extra: { isPushBox: true }
+        extra: { isPushBox: true, isDestroyed }
     });
 
     return box;
