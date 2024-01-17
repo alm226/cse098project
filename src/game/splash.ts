@@ -1,4 +1,4 @@
-import { FilledBox, TextSprite } from "../jetlag/Components/Appearance";
+import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
 import { BoxBody } from "../jetlag/Components/RigidBody";
@@ -42,8 +42,8 @@ export function splashBuilder(_level: number) {
     // Draw some text.  Tapping its *rigidBody* will go to the first page of the
     // level chooser
     new Actor({
-        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "Play"),
-        rigidBody: new BoxBody({ cx: 0, cy: 3, width: 1, height: 0.5 }),
+        appearance: new ImageSprite({ width: 1, height: 1, img: "play_button.png" }),
+        rigidBody: new BoxBody({ cx: 1, cy: 3, width: 1, height: 0.5 }),
         gestures: {
             tap: () => {
 
@@ -70,14 +70,14 @@ export function splashBuilder(_level: number) {
     // Draw some text.  Tapping its *rigidBody* will go to the first page of the
     // level chooser
     new Actor({
-        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "Credits"),
-        rigidBody: new BoxBody({ cx: 0, cy: 5, width: 1, height: 0.5 }),
+        appearance: new ImageSprite({ width: 1, height: 1, img: "Credits_button.png" }),
+        rigidBody: new BoxBody({ cx: 1, cy: 5, width: 1, height: 0.5 }),
         gestures: { tap: () => { stage.switchTo(creditsBuilder, 1); return true; } }
     });
 
     new Actor({
-        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "Delete data"),
-        rigidBody: new BoxBody({ cx: 0, cy: 8, width: 1, height: 0.5 }),
+        appearance: new ImageSprite({ width: 1, height: 1, img: "Delete_data_button.png" }),
+        rigidBody: new BoxBody({ cx: 1, cy: 8, width: 1, height: 0.5 }),
         gestures: {
             tap: () => {
                 stage.requestOverlay((overlay: Scene) => {
@@ -130,41 +130,6 @@ export function splashBuilder(_level: number) {
 
                 return true;
 
-                /*
-                                let areYouSure = new Actor({
-                                    appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "Are you sure? This will delete your progress."),
-                                    rigidBody: new BoxBody({ cx: 5, cy: 5, width: 1, height: 0.5 }),
-                                })
-                                let yes = new Actor({
-                                    appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "Yes"),
-                                    rigidBody: new BoxBody({ cx: 4, cy: 6, width: 1, height: 0.5 }),
-                                    gestures: {
-                                        tap: () => {
-                                            let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore
-                                            pstore.levelsBeat = 0;
-                                            persist(pstore, "persistent_info");
-                                            areYouSure.enabled = false;
-                                            yes.enabled = false;
-                                            no.enabled = false;
-                                            return true;
-                                        }
-                                    }
-                                })
-                                let no = new Actor({
-                                    appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "No"),
-                                    rigidBody: new BoxBody({ cx: 6, cy: 6, width: 1, height: 0.5 }),
-                                    gestures: {
-                                        tap: () => {
-                                            areYouSure.enabled = false;
-                                            yes.enabled = false;
-                                            no.enabled = false;
-                                            return true;
-                                        }
-                                    }
-                                })
-                
-            }, false);
-                return true;*/
             }
         }
     });

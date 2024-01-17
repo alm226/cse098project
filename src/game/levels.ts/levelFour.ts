@@ -99,8 +99,8 @@ export function levelFour(stage: Stage) {
                 new Actor({
                     //obviously all the programmer art is temporary
                     //but "collect.png" should be replaced with something specific whenever this code is used
-                    appearance: new ImageSprite({ width: 0.8, height: 0.8, img: "collect.png" }),
-                    rigidBody: new BoxBody({ cx: col, cy: row, width: 0.8, height: 0.8 }),
+                    appearance: new ImageSprite({ width: 1, height: 1, img: "astral_sprite_npc.png" }),
+                    rigidBody: new BoxBody({ cx: col, cy: row, width: 1, height: 1 }),
                     role: new Goodie({
                         onCollect: () => {
                             stage.score.setGoodieCount(0, 1);
