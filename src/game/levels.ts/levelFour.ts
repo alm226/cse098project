@@ -1,4 +1,4 @@
-import { FilledBox, ImageSprite } from "../../jetlag/Components/Appearance";
+import { ImageSprite } from "../../jetlag/Components/Appearance";
 import { BoxBody } from "../../jetlag/Components/RigidBody";
 import { Obstacle, Goodie } from "../../jetlag/Components/Role";
 import { Actor } from "../../jetlag/Entities/Actor";
@@ -22,15 +22,16 @@ export function levelFour(stage: Stage) {
     //@ = Level exit       (you may have to add this yourself if you want to tweak it)
     //O = NPC              (you may as well add this yourself tbh)
     const levelLayout = [
-        "################",
-        "#H             #",
-        "#      b       #",
-        "#              #",
-        "#      !       #",
-        "#              #",
-        "#######1########",
-        "#@            O#",
-        "################",
+        "#################",
+        "#H              #",
+        "#      b        #",
+        "#               #",
+        "#      !        #",
+        "#               #",
+        "#               #",
+        "#######1#########",
+        "#@             O#",
+        "#################",
     ];
 
     createPlayer(2, 1, [8]);
@@ -41,7 +42,8 @@ export function levelFour(stage: Stage) {
             if (levelLayout[row][col] === "#") {
                 new Actor({
                     rigidBody: new BoxBody({ cx: col, cy: row, width: 1, height: 1 }),
-                    appearance: new FilledBox({ width: 1, height: 1, fillColor: "#ffffff" }),
+                    //appearance: new FilledBox({ width: 1, height: 1, fillColor: "#ffffff" }),
+                    appearance: new ImageSprite({ width: 1, height: 1, img: "wall_tile.png" }),
                     role: new Obstacle(),
                     extra: { isWall: true }
                 });
