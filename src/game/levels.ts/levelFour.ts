@@ -77,11 +77,7 @@ export function levelFour(stage: Stage) {
                                 return false
                             }
 
-
-                            //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
-                            //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
                             videoCutscene("pre5Cutscene.mp4")
-
 
                             //satisfy the win condition to move on
                             stage.score.setGoodieCount(0, 2)

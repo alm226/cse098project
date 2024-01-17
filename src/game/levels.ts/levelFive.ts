@@ -77,12 +77,7 @@ export function levelFive(stage: Stage) {
                                 return false
                             }
 
-
-                            //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
-                            //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
                             videoCutscene("finalCutscene.mp4")
-
-
                             //satisfy the win condition to move on
                             stage.score.setGoodieCount(0, 2)
                             let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore

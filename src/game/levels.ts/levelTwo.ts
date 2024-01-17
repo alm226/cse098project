@@ -76,9 +76,6 @@ export function levelTwo(stage: Stage) {
                                 textbox(messages, ["npcPortrait.png", "pcPortrait.png"], order);
                                 return false
                             }
-
-                            //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
-                            //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
                             videoCutscene("pre3Cutscene.mp4")
 
                             //satisfy the win condition to move on
