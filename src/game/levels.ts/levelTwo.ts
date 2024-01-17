@@ -77,7 +77,7 @@ export function levelTwo(stage: Stage) {
 
                             //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
                             //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
-                            videoCutscene("TESTVIDEO.mp4")
+                            videoCutscene("pre3Cutscene.mp4")
 
                             //satisfy the win condition to move on
                             stage.score.setGoodieCount(0, 2)

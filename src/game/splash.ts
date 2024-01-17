@@ -49,7 +49,7 @@ export function splashBuilder(_level: number) {
 
                 //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
                 //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
-                videoCutscene("TESTVIDEO.mp4")
+                videoCutscene("introCutscene.mp4")
 
                 stage.switchTo(gameBuilder, 1);
                 return true;

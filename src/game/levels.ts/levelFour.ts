@@ -78,7 +78,7 @@ export function levelFour(stage: Stage) {
 
                             //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
                             //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
-                            videoCutscene("TESTVIDEO.mp4")
+                            videoCutscene("pre5Cutscene.mp4")
 
 
                             //satisfy the win condition to move on

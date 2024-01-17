@@ -78,7 +78,7 @@ export function levelThree(stage: Stage) {
 
                             //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
                             //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
-                            videoCutscene("TESTVIDEO.mp4")
+                            videoCutscene("pre4Cutscene.mp4")
 
 
 
