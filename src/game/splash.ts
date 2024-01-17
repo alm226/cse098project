@@ -1,11 +1,10 @@
-import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
+import { FilledBox, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
 import { BoxBody } from "../jetlag/Components/RigidBody";
 import { MusicComponent } from "../jetlag/Components/Music";
 import { chooserBuilder } from "./chooser";
-import { helpBuilder } from "./help";
-import { PStore, drawMuteButton, persist } from "./common";
+import { PStore, drawMuteButton, persist, videoCutscene } from "./common";
 import { gameBuilder } from "./play";
 import { creditsBuilder } from "./credits";
 import { Scene } from "../jetlag/Entities/Scene";
@@ -20,33 +19,10 @@ import { Scene } from "../jetlag/Entities/Scene";
  * @param level Which splash screen should be displayed
  */
 export function splashBuilder(_level: number) {
-    let vPlayer = document.getElementById("video-player")
+    //video cutscene components
+    let vPlayer = document.getElementById("introCutscene")
     let gPlayer = document.getElementById("game-player")
-    let myVideo = document.getElementById("myVideo") as HTMLVideoElement
-
-    // Draw some text.  Tapping its *rigidBody* will go to the first page of the
-    // level chooser
-    new Actor({
-        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "test"),
-        rigidBody: new BoxBody({ cx: 7, cy: 0, width: 1, height: 0.5 }),
-        gestures: {
-            tap: () => {
-                if (vPlayer != null && gPlayer != null && myVideo != null) {
-                    let getVolume = () => (stage.storage.getPersistent("volume") ?? "1") === "1";
-                    if (getVolume()) {
-                        gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.play();
-                    }
-                    else {
-                        gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = true; myVideo.play();
-                    }
-                }
-
-                return true;
-            }
-        }
-    });
-
-
+    let myVideo = document.getElementById("introVideo") as HTMLVideoElement
 
     //start the music
     if (stage.gameMusic === undefined)
@@ -72,7 +48,30 @@ export function splashBuilder(_level: number) {
     new Actor({
         appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "Play"),
         rigidBody: new BoxBody({ cx: 0, cy: 3, width: 1, height: 0.5 }),
-        gestures: { tap: () => { stage.switchTo(gameBuilder, 1); return true; } }
+        gestures: {
+            tap: () => {
+
+                videoCutscene("TESTVIDEO.mp4")
+                /*
+                if (vPlayer != null && gPlayer != null && myVideo != null) {
+                    let getVolume = () => (stage.storage.getPersistent("volume") ?? "1") === "1";
+                    vPlayer.style.visibility = 'visible'
+                    if (getVolume()) {
+                        gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = false; myVideo.play();
+                    }
+                    else {
+                        gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = true; myVideo.play();
+                    }
+                }*/
+
+
+
+                stage.switchTo(gameBuilder, 1);
+                return true;
+
+
+            }
+        }
     });
 
     // Draw some text.  Tapping its *rigidBody* will go to the first page of the

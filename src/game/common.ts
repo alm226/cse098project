@@ -14,6 +14,51 @@ export function persist(p: PStore, key: string) {
     stage.storage.setPersistent(key, JSON.stringify(p))
 }
 
+export function videoCutscene(sourceName: string) {
+    //https://stackoverflow.com/questions/5235145/changing-source-on-html5-video-tag
+
+    let vPlayer = document.getElementById("videoPlayer")
+    let gPlayer = document.getElementById("game-player")
+    let myVideo = document.getElementById("video") as HTMLVideoElement
+
+    while (myVideo.firstChild) {
+        myVideo.removeChild(myVideo.firstChild);
+    }
+
+    var source = document.createElement('source');
+
+    source.setAttribute('src', "../../assets/" + sourceName);
+    source.setAttribute('type', 'video/mp4');
+
+
+    myVideo.load();
+
+
+    if (myVideo != null && vPlayer != null && gPlayer != null) {
+        let getVolume = () => (stage.storage.getPersistent("volume") ?? "1") === "1";
+        vPlayer.style.visibility = 'visible'
+
+        if (getVolume()) {
+            gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = false; myVideo.play();
+        }
+        else {
+            gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = true; myVideo.play();
+        }
+
+
+        myVideo.appendChild(source);
+        myVideo.play();
+        console.log({
+            src: source.getAttribute('src'),
+            type: source.getAttribute('type'),
+        });
+
+
+
+    }
+
+
+}
 
 
 /**

@@ -1,9 +1,9 @@
-import { FilledBox, ImageSprite } from "../../jetlag/Components/Appearance";
+import { ImageSprite } from "../../jetlag/Components/Appearance";
 import { BoxBody } from "../../jetlag/Components/RigidBody";
 import { Obstacle, Goodie } from "../../jetlag/Components/Role";
 import { Actor } from "../../jetlag/Entities/Actor";
 import { Stage } from "../../jetlag/Stage";
-import { PStore, persist } from "../common";
+import { PStore, persist, videoCutscene } from "../common";
 import { createLockedWall } from "../lockedWall";
 import { welcomeMessage } from "../play";
 import { createPlayer } from "../playerCharacter";
@@ -13,6 +13,13 @@ import { textbox } from "../textbox";
 
 
 export function levelOne(stage: Stage) {
+    let vPlayer = document.getElementById("postLevelOneCutscene")
+    let gPlayer = document.getElementById("game-player")
+    let myVideo = document.getElementById("postLevelOneVideo") as HTMLVideoElement
+
+
+
+
     stage.score.setVictoryGoodies(2, 0, 0, 0)
     //16x9
     //there's still a lot you can't do with the basic editor
@@ -81,6 +88,7 @@ export function levelOne(stage: Stage) {
                                 return false
                             }
                             //satisfy the win condition to move on
+                            videoCutscene("XD6FOwU4kzcnrCcn.mp4")
                             stage.score.setGoodieCount(0, 2)
                             let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore
                             pstore.levelsBeat++;
