@@ -23,14 +23,14 @@ export function levelFour(stage: Stage) {
     //O = NPC              (you may as well add this yourself tbh)
     const levelLayout = [
         "#################",
-        "#H              #",
-        "#      b        #",
-        "#               #",
-        "#      !        #",
-        "#               #",
-        "#               #",
-        "#######1#########",
-        "#@             O#",
+        "###   #    ##H#@#",
+        "###b#   ##    # #",
+        "#O# #  # # #  # #",
+        "# # # #    #  # #",
+        "# # #   #  #  1 #",
+        "# #    ##      !#",
+        "#           #  ##",
+        "#      #        #",
         "#################",
     ];
 
@@ -64,11 +64,11 @@ export function levelFour(stage: Stage) {
                             if (stage.score.getGoodieCount(0) == 0) {
                                 //array of messages. 
                                 let messages = [
-                                    "Wait!",
-                                    "you haven't talked to me yet",
-                                    "even though i just look like a box",
+                                    "Who are you?!?!",
+                                    "Oh, Riley?",
+                                    "HOw did this happen? I'm alive but I'm...not",
                                     ":(",
-                                    "sorry"
+                                    "*bursts into tears*"
                                 ]
                                 //order of portraits
                                 let order = [0, 0, 0, 0, 1]
