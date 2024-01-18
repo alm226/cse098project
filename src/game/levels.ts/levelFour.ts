@@ -66,7 +66,7 @@ export function levelFour(stage: Stage) {
                                 let messages = [
                                     "Who are you?!?!",
                                     "Oh, Riley?",
-                                    "HOw did this happen? I'm alive but I'm...not",
+                                    "How did this happen? I'm alive but I'm...not",
                                     ":(",
                                     "*bursts into tears*"
                                 ]
@@ -104,10 +104,10 @@ export function levelFour(stage: Stage) {
                             stage.score.setGoodieCount(0, 1);
                             //array of messages. 
                             let messages = [
-                                "this is a message",
-                                "this is a response",
-                                " line one\n\tline two",
-                                "cool"
+                                "I knew I felt something!",
+                                "What is this body?",
+                                "It feel...new!",
+                                "I don't know if I ever want to go back..."
                             ]
                             //order of portraits (i.e. portrait 0 says the first line
                             //portrait 1 says the second line, etc)
