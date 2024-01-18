@@ -14,6 +14,11 @@ export function persist(p: PStore, key: string) {
     stage.storage.setPersistent(key, JSON.stringify(p))
 }
 
+/** This is for Session Storage */
+export class SStore {
+    pauseMusicDuration = 0;
+}
+
 /***
  * function to play a video cutscene
  * assumes everything is an mp4 and also in the assets folder
@@ -54,13 +59,15 @@ export function videoCutscene(sourceName: string) {
 
         //play unmuted
         if (getVolume()) {
-            //         console.log("pausing music")
+            //console.log("pausing music")
             stage.gameMusic?.pause()
             myVideo.onloadedmetadata = function () {
                 let duration = myVideo.duration
-                //           console.log("video duration: " + duration)
+                let sstore = stage.storage.getSession("session_state")
+                //console.log("video duration: " + duration)
+                sstore.pauseMusicDuration = duration
                 setTimeout(function () {
-                    //             console.log("unpausing music after " + duration)
+                    //console.log("unpausing music after " + duration)
                     stage.gameMusic?.play()
                 }, duration * 1000)
             };

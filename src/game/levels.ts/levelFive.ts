@@ -78,8 +78,11 @@ export function levelFive(stage: Stage) {
                                 return false
                             }
                             */
-
+                            let sstore = stage.storage.getSession("session_state")
+                            sstore.pauseMusicDuration = 28.501333
                             videoCutscene("finalCutscene.mp4")
+
+
                             //satisfy the win condition to move on
                             stage.score.setGoodieCount(0, 2)
                             let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore

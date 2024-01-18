@@ -4,7 +4,7 @@ import { stage } from "../jetlag/Stage";
 import { BoxBody } from "../jetlag/Components/RigidBody";
 import { MusicComponent } from "../jetlag/Components/Music";
 import { chooserBuilder } from "./chooser";
-import { PStore, drawMuteButton, persist, videoCutscene } from "./common";
+import { PStore, SStore, drawMuteButton, persist, videoCutscene } from "./common";
 import { gameBuilder } from "./play";
 import { creditsBuilder } from "./credits";
 import { Scene } from "../jetlag/Entities/Scene";
@@ -13,6 +13,11 @@ import { Scene } from "../jetlag/Entities/Scene";
  * This is for the sole function of making the music play nice with the video
  */
 export function splashBuilder(_level: number) {
+
+    // Only set up session storage if we don't have one already
+    if (!stage.storage.getSession("session_state"))
+        stage.storage.setSession("session_state", new SStore());
+    let sstore = stage.storage.getSession("session_state");
 
     stage.requestOverlay((overlay: Scene) => {
 
@@ -33,12 +38,17 @@ export function splashBuilder(_level: number) {
 
     }, false);
 
-
-
-    //start the music
-    if (stage.gameMusic === undefined)
-        stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("GhostedTheGameTheme.wav"));
-    stage.gameMusic.play();
+    if (sstore.pauseMusicDuration == 0) {
+        //start the music
+        if (stage.gameMusic === undefined)
+            stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("GhostedTheGameTheme.wav"));
+        stage.gameMusic.play();
+    }
+    else {
+        setTimeout(function () {
+            stage.gameMusic?.play()
+        }, sstore.pauseMusicDuration * 1000)
+    }
 
     new Actor({
         appearance: new ImageSprite({ width: 16, height: 9, img: "title_card.png", z: -1 }),
