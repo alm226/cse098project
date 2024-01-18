@@ -13,6 +13,7 @@ import { Scene } from "../jetlag/Entities/Scene";
  * This is for the sole function of making the music play nice with the video
  */
 export function splashBuilder(_level: number) {
+
     stage.requestOverlay((overlay: Scene) => {
 
         // Pressing anywhere on the text box will make the overlay go away
