@@ -43,7 +43,7 @@ export function creditsBuilder(_level: number) {
         rigidBody: new BoxBody({ cx: 10, cy: 5, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#ffffff" }, "Trevor Busch"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#3944bc" }, "Trevor Busch"),
         rigidBody: new BoxBody({ cx: 14, cy: 5, width: .1, height: .1 }),
     });
     new Actor({
