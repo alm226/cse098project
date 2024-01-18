@@ -23,18 +23,18 @@ export function levelFive(stage: Stage) {
     //O = NPC              (you may as well add this yourself tbh)
     const levelLayout = [
         "#################",
-        "#H              #",
-        "#      b        #",
-        "#               #",
-        "#      !        #",
-        "#               #",
-        "#               #",
-        "#######1#########",
-        "#@             O#",
+        "#H     #   ###  #",
+        "#  b   # b      #",
+        "# #### ##  #1   #",
+        "#          1## !#",
+        "######b########!#",
+        "#!      # b b b #",
+        "###   # #b b b b#",
+        "#@1  #    b b b #",
         "#################",
     ];
 
-    createPlayer(2, 1, [8]);
+    createPlayer(1, 1, [8]);
 
     // Create walls and goodies from the `levelLayout`
     for (let row = 0; row < levelLayout.length; row++) {
@@ -61,6 +61,7 @@ export function levelFive(stage: Stage) {
                     role: new Goodie({
                         onCollect: () => {
                             //make the user aware if they missed something
+                            /*
                             if (stage.score.getGoodieCount(0) == 0) {
                                 //array of messages. 
                                 let messages = [
@@ -76,6 +77,7 @@ export function levelFive(stage: Stage) {
                                 textbox(messages, ["npcPortrait.png", "pcPortrait.png"], order);
                                 return false
                             }
+                            */
 
                             videoCutscene("finalCutscene.mp4")
                             //satisfy the win condition to move on
@@ -125,10 +127,16 @@ export function levelFive(stage: Stage) {
         }
     }
 
-    let lockedWall = createLockedWall(7, 6);
-    createTarget(7, 4, [7], lockedWall);
+    let lockedWall1 = createLockedWall(15, 4);
+    createTarget(11, 4, [7], lockedWall1);
+
+    let lockedWall2 = createLockedWall(15, 5);
+    createTarget(12, 3, [7], lockedWall2);
+
+    let lockedWall3 = createLockedWall(2, 8);
+    createTarget(1, 6, [7], lockedWall3);
 
 
 
-    welcomeMessage("Level five\nwip");
+    welcomeMessage("Level five");
 }

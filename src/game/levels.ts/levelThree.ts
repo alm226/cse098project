@@ -139,5 +139,5 @@ export function levelThree(stage: Stage) {
 
 
 
-    welcomeMessage("Level three\nwip");
+    welcomeMessage("Level three");
 }

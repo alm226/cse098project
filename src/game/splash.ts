@@ -37,7 +37,7 @@ export function splashBuilder(_level: number) {
 
     //start the music
     if (stage.gameMusic === undefined)
-        stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("Dystopian.wav"));
+        stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("Ghosted The Game theme.wav"));
     stage.gameMusic.play();
 
     new Actor({

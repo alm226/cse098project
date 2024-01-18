@@ -35,7 +35,7 @@ export function creditsBuilder(_level: number) {
         rigidBody: new BoxBody({ cx: 2, cy: 5, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#ffffff" }, "Anders Heyniger"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#5b0b8c" }, "Anders Heyniger"),
         rigidBody: new BoxBody({ cx: 6, cy: 5, width: .1, height: .1 }),
     });
     new Actor({

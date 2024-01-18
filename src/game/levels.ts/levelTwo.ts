@@ -162,5 +162,5 @@ export function levelTwo(stage: Stage) {
         rigidBody: new BoxBody({ cx: 8, cy: 5, width: .1, height: .1 }),
     });
 
-    welcomeMessage("Level two\nwip");
+    welcomeMessage("Level two");
 }
