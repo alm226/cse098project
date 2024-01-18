@@ -87,7 +87,9 @@ export function levelOne(stage: Stage) {
 
                             stage.score.setGoodieCount(0, 2)
                             let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore
-                            pstore.levelsBeat++;
+                            if (pstore.levelsBeat < 1) {
+                                pstore.levelsBeat = 1;
+                            }
                             persist(pstore, "persistent_info");
                             return true;
                         }

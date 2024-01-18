@@ -82,7 +82,9 @@ export function levelFour(stage: Stage) {
                             //satisfy the win condition to move on
                             stage.score.setGoodieCount(0, 2)
                             let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore
-                            pstore.levelsBeat++;
+                            if (pstore.levelsBeat < 4) {
+                                pstore.levelsBeat = 4;
+                            }
                             persist(pstore, "persistent_info");
                             return true;
                         }

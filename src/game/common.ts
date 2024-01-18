@@ -103,6 +103,8 @@ export function drawMuteButton(cfg: { cx: number, cy: number, width: number, hei
     };
 }
 
+
+
 /***
  * Draw a restart button
  * 
