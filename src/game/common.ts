@@ -54,13 +54,13 @@ export function videoCutscene(sourceName: string) {
 
         //play unmuted
         if (getVolume()) {
-            console.log("pausing music")
+            //         console.log("pausing music")
             stage.gameMusic?.pause()
             myVideo.onloadedmetadata = function () {
                 let duration = myVideo.duration
-                console.log("video duration: " + duration)
+                //           console.log("video duration: " + duration)
                 setTimeout(function () {
-                    console.log("unpausing music after " + duration)
+                    //             console.log("unpausing music after " + duration)
                     stage.gameMusic?.play()
                 }, duration * 1000)
             };

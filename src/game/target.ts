@@ -20,7 +20,7 @@ export function createTarget(x: number, y: number, passThroughId: Array<number>,
         rigidBody: new BoxBody({ cx: x, cy: y, width: 1, height: 1 }, { passThroughId: passThroughId }),
         role: new Obstacle({
             heroCollision: (thisTarget: Actor, collisionActor: Actor) => {
-                console.log("hero collision called")
+                //   console.log("hero collision called")
                 //on collision, check if the hero that collides with this target block
                 //has isPushBox in its extra field
                 if (collisionActor.extra.isPushBox) {

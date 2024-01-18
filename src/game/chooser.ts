@@ -30,7 +30,7 @@ export function chooserBuilder(level: number) {
     }
     let pstore = JSON.parse(stage.storage.getPersistent("persistent_info")!) as PStore;
 
-    console.log(pstore)
+    //console.log(pstore)
 
 
     // Draw some buttons, based on which chooser "level" we're on

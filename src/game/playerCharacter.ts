@@ -76,7 +76,7 @@ export function createPlayer(x: number, y: number, passThroughId: Array<number>)
  * @param yDir the chage in Y
  */
 function movementCheck(playerX: number, playerY: number, stage: Stage, xDir: number, yDir: number, player: Actor) {
-    console.log("X direction: " + xDir + " Y direction: " + yDir)
+    //  console.log("X direction: " + xDir + " Y direction: " + yDir)
     movementCheckHelper(playerX, playerY, stage, xDir, yDir, player)
 }
 
@@ -84,22 +84,22 @@ function movementCheckHelper(x: number, y: number, stage: Stage, xDir: number, y
     for (let actor of stage.world.physics!.actorsAt({ x: x + xDir, y: y + yDir })) {
         if (actor.appearance.z > -1) {
             if (actor.extra.isWall) {
-                console.log("Wall in the way :(")
+                //          console.log("Wall in the way :(")
                 return
             }
             if (actor.extra.isPushBox) {
-                console.log("There's a pushbox here!")
+                //        console.log("There's a pushbox here!")
                 let pushBoxX = actor.rigidBody.getCenter().x;
                 let pushBoxY = actor.rigidBody.getCenter().y;
 
                 for (let boxActor of stage.world.physics!.actorsAt({ x: pushBoxX + xDir, y: pushBoxY + yDir })) {
                     if (boxActor.extra.isWall && !boxActor.extra.isTarget) {
-                        console.log("Wall in way of pushBox")
+                        //              console.log("Wall in way of pushBox")
                         return
                     }
                     if (boxActor.extra.isTarget) {
                         actor.role.onCollide(boxActor)
-                        console.log("Target")
+                        //            console.log("Target")
 
                     }
                     if (boxActor.extra.isPushBox) {
@@ -113,7 +113,7 @@ function movementCheckHelper(x: number, y: number, stage: Stage, xDir: number, y
 
             }
             if (actor.extra.isNPC) {
-                console.log("npc")
+                //       console.log("npc")
                 object.role.onCollide(actor)
             }
         }
