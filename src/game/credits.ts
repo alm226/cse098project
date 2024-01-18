@@ -43,8 +43,12 @@ export function creditsBuilder(_level: number) {
         rigidBody: new BoxBody({ cx: 14, cy: 5, width: .1, height: .1 }),
     });
     new Actor({
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#000000" }, "Made in the JetLag engine"),
+        rigidBody: new BoxBody({ cx: 8, cy: 7, width: .1, height: .1 })
+    })
+    new Actor({
         appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#000000" }, "Thanks for playing!"),
-        rigidBody: new BoxBody({ cx: 8, cy: 7, width: .1, height: .1 }),
+        rigidBody: new BoxBody({ cx: 8, cy: 8, width: .1, height: .1 }),
     });
 
     // Add a button for returning to the splash screen
