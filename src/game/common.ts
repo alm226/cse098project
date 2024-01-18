@@ -54,7 +54,20 @@ export function videoCutscene(sourceName: string) {
 
         //play unmuted
         if (getVolume()) {
+            console.log("pausing music")
+            stage.gameMusic?.pause()
+            myVideo.onloadedmetadata = function () {
+                let duration = myVideo.duration
+                console.log("video duration: " + duration)
+                setTimeout(function () {
+                    console.log("unpausing music after " + duration)
+                    stage.gameMusic?.play()
+                }, duration * 1000)
+            };
             gPlayer.style.display = "none"; vPlayer.style.display = "block"; myVideo.currentTime = 0; myVideo.autoplay = true; myVideo.muted = false; myVideo.play();
+
+
+
         }
         //play muted
         else {

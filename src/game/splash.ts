@@ -1,4 +1,4 @@
-import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
+import { ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
 import { BoxBody } from "../jetlag/Components/RigidBody";
