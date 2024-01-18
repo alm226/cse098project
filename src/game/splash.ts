@@ -47,6 +47,7 @@ export function splashBuilder(_level: number) {
     else {
         setTimeout(function () {
             stage.gameMusic?.play()
+            sstore.pauseMusicDuration = 0;
         }, sstore.pauseMusicDuration * 1000)
     }
 
