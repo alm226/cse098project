@@ -13,7 +13,7 @@ import { unlock } from "./lockedWall";
  * @param box the push box this target box is receptive to
  * @param lockedWall the locked wall this target block will unlock
  */
-export function createTarget(x: number, y: number, passThroughId: Array<number>, lockedWall: Actor) {
+export function createTarget(x: number, y: number, passThroughId: Array<number>, lockedWall: Actor, requiredWall?: Actor) {
     //target block
     let target = new Actor({
         appearance: new ImageSprite({ width: 1, height: 1, img: "target.png" }),
@@ -29,8 +29,12 @@ export function createTarget(x: number, y: number, passThroughId: Array<number>,
                     if (collisionActor.extra.isDestroyed) {
                         collisionActor.enabled = false;
                     }
-
-                    unlock(lockedWall, [8]);
+                    if (typeof requiredWall !== 'undefined') {
+                        unlock(lockedWall, [8], requiredWall);
+                    }
+                    else {
+                        unlock(lockedWall, [8]);
+                    }
                 }
             },
         }),

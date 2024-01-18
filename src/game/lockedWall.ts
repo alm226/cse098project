@@ -2,6 +2,7 @@ import { ImageSprite } from "../jetlag/Components/Appearance";
 import { BoxBody, CircleBody } from "../jetlag/Components/RigidBody";
 import { Goodie, Obstacle } from "../jetlag/Components/Role";
 import { Actor } from "../jetlag/Entities/Actor";
+import { stage } from "../jetlag/Stage";
 /***
  * Function to create a locked wall
  * Similar to a regular wall, but can be unlocked (i.e. player can move through it)
@@ -42,8 +43,14 @@ export function createWallKey(wall: Actor) {
  * @param wall the locked wall we want to unlock
  * @param passThroughId the pass through id array we want to give the unlocked wall
  */
-export function unlock(wall: Actor, passThroughId: Array<number>) {
-  wall.enabled = false;
+export function unlock(wall: Actor, passThroughId?: Array<number>, requiredWall?: Actor) {
+  if (typeof requiredWall !== 'undefined' && requiredWall.enabled == true) {
+    stage.score.loseLevel();
+  }
+  else {
+    wall.enabled = false;
+  }
+  /*
   let unlockedWall = new Actor({
     appearance: new ImageSprite({ width: 1, height: 1, img: "unlocked.png" }),
     //create this new unlocked wall where the locked wall once was
@@ -52,4 +59,5 @@ export function unlock(wall: Actor, passThroughId: Array<number>) {
     extra: { isWall: false }
   })
   return unlockedWall
+  */
 }
