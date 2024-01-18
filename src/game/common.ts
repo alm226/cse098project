@@ -36,7 +36,7 @@ export function videoCutscene(sourceName: string) {
     var source = document.createElement('source');
 
     //set the source to play the video
-    source.setAttribute('src', "../../assets/" + sourceName);
+    source.setAttribute('src', "assets/" + sourceName);
     source.setAttribute('type', 'video/mp4');
 
     //load the video
