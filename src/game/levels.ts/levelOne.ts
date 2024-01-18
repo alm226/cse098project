@@ -110,9 +110,9 @@ export function levelOne(stage: Stage) {
                             //array of messages. 
                             let messages = [
                                 "What was that???",
-                                "Something went wrong with the power source.",
+                                "Something went wrong \nwith the power source.",
                                 "We're so fired",
-                                "We'll have bigger problems if we don't fix it..."
+                                "We'll have bigger problems \nif we don't fix it..."
                             ]
                             //order of portraits (i.e. portrait 0 says the first line
                             //portrait 1 says the second line, etc)
