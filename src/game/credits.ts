@@ -72,7 +72,7 @@ export function creditsBuilder(_level: number) {
         rigidBody: new BoxBody({ cx: 6, cy: 8, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 50, color: "#4b0082" }, "s"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 50, color: "#9379c2" }, "s"),
         rigidBody: new BoxBody({ cx: 6.5, cy: 8, width: .1, height: .1 }),
     });
     new Actor({
@@ -100,7 +100,7 @@ export function creditsBuilder(_level: number) {
         rigidBody: new BoxBody({ cx: 10.5, cy: 8, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 50, color: "#4b0082" }, "y"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 50, color: "#9379c2" }, "y"),
         rigidBody: new BoxBody({ cx: 11, cy: 8, width: .1, height: .1 }),
     });
     new Actor({
