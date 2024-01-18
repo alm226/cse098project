@@ -63,9 +63,7 @@ export function videoCutscene(sourceName: string) {
             stage.gameMusic?.pause()
             myVideo.onloadedmetadata = function () {
                 let duration = myVideo.duration
-                let sstore = stage.storage.getSession("session_state")
                 //console.log("video duration: " + duration)
-                sstore.pauseMusicDuration = duration
                 setTimeout(function () {
                     //console.log("unpausing music after " + duration)
                     stage.gameMusic?.play()
