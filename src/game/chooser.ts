@@ -36,7 +36,7 @@ export function chooserBuilder(level: number) {
     // Draw some buttons, based on which chooser "level" we're on
     //im sure there is a better way of doing this
     if (level == 1) {
-        drawLevelButton(14, 1, -1, 0)
+        //drawLevelButton(14, 1, -1, 0)
 
         // Levels 1-4
         if (pstore.levelsBeat >= 0) {
