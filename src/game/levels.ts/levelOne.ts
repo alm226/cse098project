@@ -70,8 +70,8 @@ export function levelOne(stage: Stage) {
                                 //array of messages. 
                                 let messages = [
                                     "Wait!",
-                                    "you haven't talked to me yet",
-                                    "even though i just look like a box",
+                                    "Please don't go",
+                                    "What's going on??",
                                     ":(",
                                     "sorry"
                                 ]
@@ -109,10 +109,10 @@ export function levelOne(stage: Stage) {
                             stage.score.setGoodieCount(0, 1);
                             //array of messages. 
                             let messages = [
-                                "this is a message",
-                                "this is a response",
-                                " line one\n\tline two",
-                                "cool"
+                                "What was that???",
+                                "Something went wrong with the power source.",
+                                "We're so fired",
+                                "We'll have bigger problems if we don't fix it..."
                             ]
                             //order of portraits (i.e. portrait 0 says the first line
                             //portrait 1 says the second line, etc)
