@@ -1,4 +1,4 @@
-import { ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
+import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { BoxBody } from "../jetlag/Components/RigidBody";
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
@@ -13,17 +13,21 @@ import { splashBuilder } from "./splash";
  * @param level Which screen of the chooser should be displayed
  */
 export function creditsBuilder(_level: number) {
+    new Actor({
+        appearance: new FilledBox({ width: 16, height: 9, z: -1, fillColor: "31272A" }),
+        rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 })
+    })
     // Draw a brown box at the top of the screen, put some text in it
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 50, color: "#000000" }, "Ghosted: The Game"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 50, color: "#ffffff" }, "Ghosted: The Game"),
         rigidBody: new BoxBody({ cx: 8, cy: 1, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#000000" }, "by"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#ffffff" }, "by"),
         rigidBody: new BoxBody({ cx: 8, cy: 3, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#000000" }, "Studio awesome game making zone people cool squad team"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#ffffff" }, "Studio awesome game making zone people cool squad team"),
         rigidBody: new BoxBody({ cx: 8, cy: 4, width: .1, height: .1 }),
     });
     new Actor({
@@ -31,23 +35,23 @@ export function creditsBuilder(_level: number) {
         rigidBody: new BoxBody({ cx: 2, cy: 5, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#000000" }, "Anders Heyniger"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#ffffff" }, "Anders Heyniger"),
         rigidBody: new BoxBody({ cx: 6, cy: 5, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#000000" }, "Lauren Hull"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#ffffff" }, "Lauren Hull"),
         rigidBody: new BoxBody({ cx: 10, cy: 5, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#000000" }, "Trevor Busch"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#ffffff" }, "Trevor Busch"),
         rigidBody: new BoxBody({ cx: 14, cy: 5, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#000000" }, "Made in the JetLag engine"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#ffffff" }, "Made in the JetLag engine"),
         rigidBody: new BoxBody({ cx: 8, cy: 7, width: .1, height: .1 })
     })
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#000000" }, "Thanks for playing!"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#ffffff" }, "Thanks for playing!"),
         rigidBody: new BoxBody({ cx: 8, cy: 8, width: .1, height: .1 }),
     });
 

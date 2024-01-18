@@ -24,6 +24,7 @@ export function gameBuilder(level: number) {
     //variable - if pause screen then change the pause screen handler
     stage.keyboard.setKeyUpHandler(KeyCodes.KEY_ESCAPE, () => (pauseGame(level)));
 
+
     createRestartButton({ scene: stage.hud, x: 15, y: 1.5, width: 1, height: 1 });
     createBoundary();
     drawBackground();

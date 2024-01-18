@@ -1,4 +1,4 @@
-import { ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
+import { FilledBox, ImageSprite, TextSprite } from "../jetlag/Components/Appearance";
 import { Actor } from "../jetlag/Entities/Actor";
 import { stage } from "../jetlag/Stage";
 import { BoxBody } from "../jetlag/Components/RigidBody";
@@ -10,15 +10,29 @@ import { creditsBuilder } from "./credits";
 import { Scene } from "../jetlag/Entities/Scene";
 
 /**
- * splashBuilder will draw the scene that we see when the game starts. In our
- * case, it's just a menu and some branding.
- *
- * There is usually only one splash screen, but JetLag allows for many, so there
- * is a `level` parameter.  In this code, we just ignore it.
- *
- * @param level Which splash screen should be displayed
+ * This is for the sole function of making the music play nice with the video
  */
 export function splashBuilder(_level: number) {
+    stage.requestOverlay((overlay: Scene) => {
+
+        // Pressing anywhere on the text box will make the overlay go away
+        new Actor({
+            appearance: new FilledBox({ width: 16, height: 9, fillColor: "#31272A" }),
+            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }),
+            gestures: { tap: () => { stage.clearOverlay(); return true; } },
+        });
+        new Actor({
+            appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 64, z: 0 }, "Studio awesome game making zone \npeople cool squad team presents:"),
+            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }),
+        });
+        new Actor({
+            appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 28, z: 0 }, "(click anywhere to begin)"),
+            rigidBody: new BoxBody({ cx: 8, cy: 8, width: 16, height: 9 }, { scene: overlay }),
+        });
+
+    }, false);
+
+
 
     //start the music
     if (stage.gameMusic === undefined)
@@ -37,7 +51,6 @@ export function splashBuilder(_level: number) {
         rigidBody: new BoxBody({ cx: 1, cy: 3, width: 1, height: 0.5 }),
         gestures: {
             tap: () => {
-
                 //TODO: PLACEHOLDER VIDEO PLACEHOLDER VIDEO PLEASE REMEMBER TO CHANGE ME
                 //THE PLACEHOLDER VIDEO IS HERE!!!!!!!
                 videoCutscene("introCutscene.mp4")
