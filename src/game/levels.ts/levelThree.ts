@@ -15,6 +15,7 @@ export function levelThree(stage: Stage) {
     stage.score.setVictoryGoodies(2, 0, 0, 0)
     //16x9
     //b = box
+    //B = box that is destroyed on contact with target
     //# = wall
     //H = player character (you have to add this yourself)
     //! = target           (you have to add this yourself)
@@ -27,7 +28,7 @@ export function levelThree(stage: Stage) {
         "# b             #",
         "##1##########  ##",
         "#         !     #",
-        "# b##############",
+        "#  ##############",
         "#              !#",
         "#######1#########",
         "#@             O#",
@@ -50,6 +51,10 @@ export function levelThree(stage: Stage) {
                 });
             }
             else if (levelLayout[row][col] === "b") {
+                createPushBox(col, row, [7])
+            }
+
+            else if (levelLayout[row][col] === "B") {
                 createPushBox(col, row, [7], true)
             }
 

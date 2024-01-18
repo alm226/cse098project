@@ -25,19 +25,10 @@ export function splashBuilder(_level: number) {
         stage.gameMusic = new MusicComponent(stage.musicLibrary.getMusic("Dystopian.wav"));
     stage.gameMusic.play();
 
-    // Draw a brown box at the top of the screen, put some text in it
     new Actor({
-        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 50, color: "#000000" }, "Ghosted: The Game"),
-        rigidBody: new BoxBody({ cx: 0, cy: 0, width: .1, height: .1 }),
-    });
-    new Actor({
-        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "(working title)"),
-        rigidBody: new BoxBody({ cx: 0, cy: 1, width: .1, height: .1 }),
-    });
-    new Actor({
-        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#000000" }, "(title screen WIP)"),
-        rigidBody: new BoxBody({ cx: 0, cy: 2, width: .1, height: .1 }),
-    });
+        appearance: new ImageSprite({ width: 16, height: 9, img: "title_card.png", z: -1 }),
+        rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 })
+    })
 
     // Draw some text.  Tapping its *rigidBody* will go to the first page of the
     // level chooser

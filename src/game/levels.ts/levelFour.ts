@@ -13,7 +13,7 @@ import { textbox } from "../textbox";
 
 export function levelFour(stage: Stage) {
     stage.score.setVictoryGoodies(2, 0, 0, 0)
-    //16x9
+    // 16x9
     //b = box
     //# = wall
     //H = player character (you have to add this yourself)
