@@ -34,7 +34,7 @@ export function levelFour(stage: Stage) {
         "#################",
     ];
 
-    createPlayer(2, 1, [8]);
+    createPlayer(13, 1, [8]);
 
     // Create walls and goodies from the `levelLayout`
     for (let row = 0; row < levelLayout.length; row++) {
@@ -66,7 +66,7 @@ export function levelFour(stage: Stage) {
                                 let messages = [
                                     "Who are you?!?!",
                                     "Oh, Riley?",
-                                    "How did this happen? I'm alive but I'm...not",
+                                    "How did this happen? \nI'm alive but I'm...not",
                                     ":(",
                                     "*bursts into tears*"
                                 ]
@@ -107,7 +107,7 @@ export function levelFour(stage: Stage) {
                                 "I knew I felt something!",
                                 "What is this body?",
                                 "It feel...new!",
-                                "I don't know if I ever want to go back..."
+                                "I don't know if I \never want to go back..."
                             ]
                             //order of portraits (i.e. portrait 0 says the first line
                             //portrait 1 says the second line, etc)
@@ -126,8 +126,8 @@ export function levelFour(stage: Stage) {
         }
     }
 
-    let lockedWall = createLockedWall(7, 6);
-    createTarget(7, 4, [7], lockedWall);
+    let lockedWall = createLockedWall(14, 5);
+    createTarget(15, 6, [7], lockedWall);
 
 
 
