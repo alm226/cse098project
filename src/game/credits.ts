@@ -39,7 +39,7 @@ export function creditsBuilder(_level: number) {
         rigidBody: new BoxBody({ cx: 6, cy: 5, width: .1, height: .1 }),
     });
     new Actor({
-        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#ffffff" }, "Lauren Hull"),
+        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#FFC0CB" }, "Lauren Hull"),
         rigidBody: new BoxBody({ cx: 10, cy: 5, width: .1, height: .1 }),
     });
     new Actor({
