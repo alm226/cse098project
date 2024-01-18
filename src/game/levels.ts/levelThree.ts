@@ -67,21 +67,21 @@ export function levelThree(stage: Stage) {
                     role: new Goodie({
                         onCollect: () => {
                             //make the user aware if they missed something
-                            if (stage.score.getGoodieCount(0) == 0) {
-                                //array of messages. 
-                                let messages = [
-                                    "Wait!",
-                                    "you haven't talked to me yet",
-                                    "even though i just look like a box",
-                                    ":(",
-                                    "sorry"
-                                ]
-                                //order of portraits
-                                let order = [0, 0, 0, 0, 1]
-
-                                textbox(messages, ["npcPortrait.png", "pcPortrait.png"], order);
-                                return false
-                            }
+                            /*  if (stage.score.getGoodieCount(0) == 0) {
+                                  //array of messages. 
+                                  let messages = [
+                                      "Wait!",
+                                      "you haven't talked to me yet",
+                                      "even though i just look like a box",
+                                      ":(",
+                                      "sorry"
+                                  ]
+                                  //order of portraits
+                                  let order = [0, 0, 0, 0, 1]
+  
+                                  textbox(messages, ["npcPortrait.png", "pcPortrait.png"], order);
+                                  return false
+                              }*/
 
                             videoCutscene("pre4Cutscene.mp4")
                             //satisfy the win condition to move on
@@ -109,10 +109,10 @@ export function levelThree(stage: Stage) {
                             stage.score.setGoodieCount(0, 1);
                             //array of messages. 
                             let messages = [
-                                "this is a message",
-                                "this is a response",
-                                " line one\n\tline two",
-                                "cool"
+                                "I hope you know what \nyou're doing...",
+                                "Me too",
+                                "if you don't...",
+                                "our bodies will slowly \ndie with us watching :("
                             ]
                             //order of portraits (i.e. portrait 0 says the first line
                             //portrait 1 says the second line, etc)
