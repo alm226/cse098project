@@ -74,13 +74,14 @@ export function splashBuilder(_level: number) {
                 stage.requestOverlay((overlay: Scene) => {
 
                     // Pressing anywhere on the black background will make the overlay go away
+
                     new Actor({
-                        appearance: new FilledBox({ width: 16, height: 9, fillColor: "#000000" }),
+                        appearance: new ImageSprite({ width: 16, height: 9, img: "colored_blank_title.png" }),
                         rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }),
-                    });
+                    })
 
                     let areYouSure = new Actor({
-                        appearance: new TextSprite({ center: false, face: "Times New Roman", size: 25, color: "#FF0000" },
+                        appearance: new TextSprite({ center: true, face: "Times New Roman", size: 25, color: "#FF0000" },
                             "Are you sure? This will delete your progress.\nThis cannot be undone"),
                         rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 1, height: 0.5 }, { scene: overlay }),
                     })

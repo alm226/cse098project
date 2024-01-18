@@ -121,6 +121,7 @@ export function welcomeMessage(message: string) {
     // Immediately install the overlay, to pause the game
     stage.requestOverlay((overlay: Scene) => {
         // Pressing anywhere on the black background will make the overlay go away
+        /*
         new Actor({
             appearance: new FilledBox({ width: 16, height: 9, fillColor: "#000000" }),
             rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }),
@@ -130,7 +131,17 @@ export function welcomeMessage(message: string) {
                     return true;
                 }
             },
-        });
+        });*/
+        new Actor({
+            appearance: new ImageSprite({ width: 16, height: 9, img: "colored_blank_title.png" }),
+            rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 }, { scene: overlay }),
+            gestures: {
+                tap: () => {
+                    stage.clearOverlay();
+                    return true;
+                }
+            },
+        })
         // The text goes in the middle
         new Actor({
             rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: .1, height: .1 }, { scene: overlay }),

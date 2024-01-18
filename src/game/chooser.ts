@@ -117,4 +117,9 @@ function drawLevelButton(cx: number, cy: number, level: number, levelButtonAsset
     //        appearance: new TextSprite({ center: true, face: "Arial", color: "#FFFFFF", size: 56, z: 0 }, () => level + ""),
     //        rigidBody: new BoxBody({ cx, cy, width: .1, height: .1 }),
     //    });
+
+    new Actor({
+        appearance: new ImageSprite({ width: 16, height: 9, img: "colored_blank_title.png", z: -1 }),
+        rigidBody: new BoxBody({ cx: 8, cy: 4.5, width: 16, height: 9 })
+    })
 }

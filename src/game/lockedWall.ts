@@ -43,7 +43,7 @@ export function createWallKey(wall: Actor) {
  * @param wall the locked wall we want to unlock
  * @param passThroughId the pass through id array we want to give the unlocked wall
  */
-<<<<<<< HEAD
+
 export function unlock(wall: Actor, passThroughId?: Array<number>, requiredWall?: Actor) {
   if (typeof requiredWall !== 'undefined' && requiredWall.enabled == true) {
     stage.score.loseLevel();
@@ -61,16 +61,4 @@ export function unlock(wall: Actor, passThroughId?: Array<number>, requiredWall?
   })
   return unlockedWall
   */
-=======
-export function unlock(wall: Actor, passThroughId: Array<number>) {
-  wall.enabled = false;
-  /*  let unlockedWall = new Actor({
-      appearance: new ImageSprite({ width: 1, height: 1, img: "unlocked.png" }),
-      //create this new unlocked wall where the locked wall once was
-      rigidBody: new BoxBody({ cx: wall.rigidBody.getCenter().x, cy: wall.rigidBody.getCenter().y, width: 1, height: 1 }, { passThroughId: passThroughId, kinematic: false, dynamic: false }),
-      role: new Obstacle(),
-      extra: { isWall: false }
-    })
-    return unlockedWall*/
->>>>>>> 41918df3dcc00f47772e8ec054ed374c5ae6d17e
 }
