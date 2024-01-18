@@ -104,6 +104,7 @@ function movementCheckHelper(x: number, y: number, stage: Stage, xDir: number, y
                     }
                     if (boxActor.extra.isPushBox) {
                         movementCheckHelper(boxActor.rigidBody.getCenter().x, boxActor.rigidBody.getCenter().y, stage, xDir, yDir, boxActor)
+                        return
                     }
 
                 }
